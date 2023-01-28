@@ -6,7 +6,7 @@ import 'package:tamahaem/event/events/SickEvent.dart';
 import 'events/AbstractTamagotchiEvent.dart';
 import 'events/HungryEvent.dart';
 import 'events/ThirstyEvent.dart';
-import 'events/TiredEvent.dart';
+import 'events/PoopEvent.dart';
 
 class EventGenerator {
   final _random = Random();
@@ -15,7 +15,7 @@ class EventGenerator {
     SickEvent(),
     HungryEvent(),
     ThirstyEvent(),
-    TiredEvent(),
+    PoopEvent(),
     FoundToyEvent(),
   ];
 
