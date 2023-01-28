@@ -5,7 +5,7 @@ import 'package:tamahaem/utils/TamagotchiMap.dart';
 import '../domain/Tamagotchi.dart';
 import '../domain/TamagotchiProvider.dart';
 
-class FeedAction extends StatelessWidget {
+class CleanAction extends StatelessWidget {
   Tamagotchi tamagotchi = TamagotchiProvider().tamagotchi;
 
   @override
