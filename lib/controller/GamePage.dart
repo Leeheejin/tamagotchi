@@ -5,7 +5,7 @@ import 'package:tamahaem/event/EventMarkerProvider.dart';
 import 'package:tamahaem/controller/TamagotchiCounterController.dart';
 
 import '../domain/TamagotchiProvider.dart';
-import '../ui/Mydlialog.dart';
+import '../ui/ActionDialog.dart';
 import '../ui/NewFriendlyGage.dart';
 import '../ui/TamagotchiMovement.dart';
 import '../ui/TamagotchiStatus.dart';
@@ -123,7 +123,7 @@ class _GamePageState extends State<GamePage> with AutomaticKeepAliveClientMixin<
         return Transform.scale(
           origin: Offset(MediaQuery.of(context).size.width * 0.1, MediaQuery.of(context).size.height),
           scale: curve,
-          child: MyDialog(),
+          child: ActionDialog(),
         );
       },
       transitionDuration: const Duration(seconds: 1),

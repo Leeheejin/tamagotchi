@@ -34,7 +34,7 @@ class _ActionButtonState extends State<ActionButton> {
         },
 
         onTap: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => TamagotchiMap().actionButtonMap[0]));
+          Navigator.push(context, MaterialPageRoute(builder: (context) => TamagotchiMap().actionButtonMap[widget.index]));
         },
         // index 0번에 대한 버튼으로, 클릭시 0번에 해당하는 액션 뷰를 띄워줘야 한다. 코드는 0번임을 알지만 개발자는 0번이 무슨 액션인지 모른다. 그렇기에 코드상의 인덱스와 실제 액션을 매핑을 해줘야 한다.
         child: pressed ? Image.asset("assets/images/button/${widget.index}_pressed.png", width: 75, height: 75, fit: BoxFit.fill,)
