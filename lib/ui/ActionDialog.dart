@@ -10,7 +10,6 @@ class ActionDialog extends StatefulWidget {
 }
 
 class _ActionDialogState extends State<ActionDialog> {
-  final pressed = {"state": false };
 
   @override
   Widget build(BuildContext context) {
