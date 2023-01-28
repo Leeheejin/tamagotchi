@@ -14,6 +14,4 @@ class ActionMap {
     5: "Not impl",
     6: "Not impl"
   };
-
-  bool
 }
