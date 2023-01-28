@@ -68,7 +68,7 @@ class _GamePageState extends State<GamePage> with AutomaticKeepAliveClientMixin<
               child: SizedBox(
                 width: MediaQuery.of(context).size.width * 0.1,
                 height: MediaQuery.of(context).size.height * 0.1,
-                child: EventMarkerProvider().currentEventIcon,
+                child: EventProvider().currentEvent.eventIcon,
               ),
             ),
           ),

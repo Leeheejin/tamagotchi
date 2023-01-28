@@ -1,25 +1,21 @@
-import 'package:flutter/material.dart';
+import 'package:tamahaem/event/events/AbstractTamagotchiEvent.dart';
+import 'package:tamahaem/event/events/DefaultEvent.dart';
 
-class EventMarkerProvider {
-  Icon _currentEventIcon = Icon(Icons.add_circle_outline, size: 75);
+class EventProvider {
   bool _isEventActive = false;
-  String _currentEventName = "";
+  AbstractTamagotchiEvent _currentEvent = DefaultEvent();
 
-  static final EventMarkerProvider _instance = EventMarkerProvider._internal();
+  static final EventProvider _instance = EventProvider._internal();
 
-  factory EventMarkerProvider() {
+  factory EventProvider() {
     return _instance;
   }
 
-  EventMarkerProvider._internal() {
+  EventProvider._internal() {
   }
 
-  void setCurrentEventName(String name) {
-    _currentEventName = name;
-  }
-
-  void setCurrentImage(Icon icon) {
-    _currentEventIcon = icon;
+  void setCurrentEvent(AbstractTamagotchiEvent event) {
+    _currentEvent = event;
   }
 
   void activeEvent() {
@@ -30,7 +26,7 @@ class EventMarkerProvider {
     _isEventActive = false;
   }
 
-  Icon get currentEventIcon => _currentEventIcon;
   bool get isEventActive => _isEventActive;
-  String get currentEventName => _currentEventName;
+
+  AbstractTamagotchiEvent get currentEvent => _currentEvent;
 }
