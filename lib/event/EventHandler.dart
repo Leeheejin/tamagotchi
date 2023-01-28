@@ -4,7 +4,7 @@ import 'package:logger/logger.dart';
 import 'package:tamahaem/domain/Tamagotchi.dart';
 import 'package:tamahaem/domain/TamagotchiProvider.dart';
 import 'package:tamahaem/event/EventGenerator.dart';
-import 'package:tamahaem/event/EventMarkerProvider.dart';
+import 'package:tamahaem/event/EventProvider.dart';
 import 'package:tamahaem/event/events/AbstractTamagotchiEvent.dart';
 
 class EventHandler {
