@@ -15,21 +15,28 @@ class EventHandler {
   Logger logger = Logger();
 
   void startEvent() {
-    _tamagotchiEvent = _eventGenerator.getRandomEvent();
-    _tamagotchiEvent.doAct();
-    EventMarkerProvider().setCurrentImage(_tamagotchiEvent.eventIcon);
-    EventMarkerProvider().activeEvent();
-    _eventTimer = Timer(const Duration(minutes: 1), () {
-      if (_tamagotchiEvent.isHandled == false) {
+
+    setEvent();
+
+    _eventTimer = Timer(const Duration(minutes: 5), () {
+      if (EventProvider().currentEvent.isHandled == false) {
         _tamagotchi.decreaseFriendly();
         logger.v("event failed ${_tamagotchi.friendlyValue}");
       }
-      EventMarkerProvider().inactiveEvent();
+      EventProvider().inactiveEvent();
     });
   }
 
   void endEvent() {
     _eventTimer.cancel();
-    EventMarkerProvider().inactiveEvent();
+    EventProvider().inactiveEvent();
+  }
+
+  void setEvent() {
+    _tamagotchiEvent = _eventGenerator.getRandomEvent();
+    EventProvider().setCurrentEvent(_tamagotchiEvent);
+    EventProvider().currentEvent.doAct();
+    EventProvider().activeEvent();
+    logger.v("current event: ${EventProvider().currentEvent.eventName}");
   }
 }
