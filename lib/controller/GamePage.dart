@@ -6,7 +6,7 @@ import 'package:tamahaem/controller/TamagotchiCounterController.dart';
 
 import '../domain/TamagotchiProvider.dart';
 import '../ui/ActionDialog.dart';
-import '../ui/NewFriendlyGage.dart';
+import '../ui/FriendlyGage.dart';
 import '../ui/TamagotchiMovement.dart';
 import '../ui/TamagotchiStatus.dart';
 import '../utils/SoundPlayer.dart';
@@ -78,7 +78,7 @@ class _GamePageState extends State<GamePage> with AutomaticKeepAliveClientMixin<
               child: SizedBox(
                 height: 50,
                 width: MediaQuery.of(context).size.width * 0.5,
-                child: NewFriendlyGage(
+                child: FriendlyGage(
                     key: UniqueKey(),
                     friendly: TamagotchiProvider().tamagotchi.friendlyValue,
                 ),
