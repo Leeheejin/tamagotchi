@@ -1,13 +1,13 @@
 import 'dart:core';
 
 import 'package:flutter/cupertino.dart';
-import 'package:tamahaem/action/CareAction.dart';
-import 'package:tamahaem/action/PlayAction.dart';
+import 'package:tamahaem/action/Impl/CareAction.dart';
+import 'package:tamahaem/action/Impl/CleanAction.dart';
+import 'package:tamahaem/action/Impl/PlayAction.dart';
+import 'package:tamahaem/action/Impl/WaterAction.dart';
 import 'package:tamahaem/event/EventHandleProvider.dart';
 
-import '../action/CleanAction.dart';
-import '../action/FeedAction.dart';
-import '../action/WaterAction.dart';
+import '../action/Impl/FeedAction.dart';
 
 class TamagotchiMap {
 

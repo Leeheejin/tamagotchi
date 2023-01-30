@@ -1,12 +1,11 @@
 
 import 'package:flutter/material.dart';
+import 'package:tamahaem/action/AbstractAction.dart';
+import 'package:tamahaem/domain/Tamagotchi.dart';
+import 'package:tamahaem/domain/TamagotchiProvider.dart';
 import 'package:tamahaem/utils/TamagotchiMap.dart';
 
-import '../domain/Tamagotchi.dart';
-import '../domain/TamagotchiProvider.dart';
-import 'AbstractAction.dart';
-
-class PlayAction extends AbstractAction {
+class CleanAction extends AbstractAction {
   Tamagotchi tamagotchi = TamagotchiProvider().tamagotchi;
 
   @override

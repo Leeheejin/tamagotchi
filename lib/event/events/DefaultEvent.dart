@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tamahaem/action/DefaultAction.dart';
-import 'package:tamahaem/domain/TamagotchiProvider.dart';
+import 'package:tamahaem/action/Impl/DefaultAction.dart';
 import 'package:tamahaem/event/events/AbstractTamagotchiEvent.dart';
 
 class DefaultEvent extends AbstractTamagotchiEvent {
