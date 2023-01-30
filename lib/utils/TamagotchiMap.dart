@@ -3,11 +3,7 @@ import 'dart:core';
 import 'package:flutter/cupertino.dart';
 import 'package:tamahaem/action/CareAction.dart';
 import 'package:tamahaem/action/PlayAction.dart';
-import 'package:tamahaem/event/events/FoundToyEvent.dart';
-import 'package:tamahaem/event/events/HungryEvent.dart';
-import 'package:tamahaem/event/events/PoopEvent.dart';
-import 'package:tamahaem/event/events/SickEvent.dart';
-import 'package:tamahaem/event/events/ThirstyEvent.dart';
+import 'package:tamahaem/event/EventProvider.dart';
 
 import '../action/CleanAction.dart';
 import '../action/FeedAction.dart';
@@ -23,15 +19,7 @@ class TamagotchiMap {
     4: CareAction(),
   };
 
-  //TODO find out this event is handled.
-  final Map<Type, void> _eventHandleMap = {
-    FeedAction: HungryEvent().handleEvent(),
-    WaterAction: ThirstyEvent().handleEvent(),
-    PlayAction: FoundToyEvent().handleEvent(),
-    CleanAction: PoopEvent().handleEvent(),
-    CareAction: SickEvent().handleEvent()
-  };
+  void actionNotifier(Type type) => { EventProvider().currentEvent.handleEvent(type) };
 
   Map get actionButtonMap => _actionButtonMap;
-  Map get eventHandleMap => _eventHandleMap;
 }

@@ -1,11 +1,12 @@
 
 import 'package:flutter/material.dart';
+import 'package:tamahaem/action/AbstractAction.dart';
 import 'package:tamahaem/utils/TamagotchiMap.dart';
 
 import '../domain/Tamagotchi.dart';
 import '../domain/TamagotchiProvider.dart';
 
-class CareAction extends StatelessWidget {
+class CareAction extends AbstractAction {
   Tamagotchi tamagotchi = TamagotchiProvider().tamagotchi;
 
   @override
@@ -16,7 +17,7 @@ class CareAction extends StatelessWidget {
         child: ElevatedButton(
           child: const Text("돌아가기"),
           onPressed: () {
-            TamagotchiMap().eventHandleMap[runtimeType];
+            TamagotchiMap().actionNotifier(runtimeType);
             Navigator.pop(context);
           },
         ),

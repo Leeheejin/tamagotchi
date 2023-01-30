@@ -37,6 +37,6 @@ class EventHandler {
     EventProvider().setCurrentEvent(_tamagotchiEvent);
     EventProvider().currentEvent.doAct();
     EventProvider().activeEvent();
-    logger.v("current event: ${EventProvider().currentEvent.eventName}");
+    logger.v("current event: ${EventProvider().currentEvent.runtimeType}");
   }
 }

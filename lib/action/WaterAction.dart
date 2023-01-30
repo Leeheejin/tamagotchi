@@ -4,8 +4,9 @@ import 'package:tamahaem/utils/TamagotchiMap.dart';
 
 import '../domain/Tamagotchi.dart';
 import '../domain/TamagotchiProvider.dart';
+import 'AbstractAction.dart';
 
-class WaterAction extends StatelessWidget {
+class WaterAction extends AbstractAction {
   Tamagotchi tamagotchi = TamagotchiProvider().tamagotchi;
 
   @override
@@ -16,7 +17,7 @@ class WaterAction extends StatelessWidget {
         child: ElevatedButton(
           child: const Text("돌아가기"),
           onPressed: () {
-            TamagotchiMap().eventHandleMap[runtimeType];
+            TamagotchiMap().actionNotifier(runtimeType);
             Navigator.pop(context);
           },
         ),
