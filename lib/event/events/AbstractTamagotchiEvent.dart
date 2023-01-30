@@ -1,15 +1,23 @@
 import 'package:flutter/cupertino.dart';
+import 'package:logger/logger.dart';
 import 'package:tamahaem/domain/Tamagotchi.dart';
 import 'package:tamahaem/domain/TamagotchiProvider.dart';
+import 'package:tamahaem/event/EventHandleProvider.dart';
 
 abstract class AbstractTamagotchiEvent {
   Tamagotchi tamagotchi = TamagotchiProvider().tamagotchi;
-  late String eventName;
   late Icon eventIcon;
-  bool isHandled = false;
+  late Type actionKey;
+  Logger logger = Logger();
 
-  void handleEvent() {
-    isHandled = true;
+  //TODO 이벤트 타입과 액션 타입을 비교하여 핸들되었는지 체크 필요.
+  void handleEvent(Type actionType) {
+
+    logger.v("action ocurred: $actionType");
+
+    if (actionKey == actionType) {
+      EventHandleProvider().handleEvent();
+    }
   }
 
   void doAct();

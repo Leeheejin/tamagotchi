@@ -179,8 +179,7 @@ class Tamagotchi {
     save();
   }
 
-  void tired() {
-    setThirst(thirst - 10);
+  void poop() {
     setHappiness(happiness - 10);
   }
 }

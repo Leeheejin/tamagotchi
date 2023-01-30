@@ -2,15 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:tamahaem/ui/ActionButton.dart';
 
 
-class MyDialog extends StatefulWidget {
-  const MyDialog({super.key});
+class ActionDialog extends StatefulWidget {
+  const ActionDialog({super.key});
 
   @override
-  _MyDialogState createState() => _MyDialogState();
+  _ActionDialogState createState() => _ActionDialogState();
 }
 
-class _MyDialogState extends State<MyDialog> {
-  final pressed = {"state": false };
+class _ActionDialogState extends State<ActionDialog> {
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +69,7 @@ class _MyDialogState extends State<MyDialog> {
             mainAxisSpacing: 0,
             childAspectRatio: 1,
           ),
-        itemCount: 7,
+        itemCount: 4,
         primary: false,
           itemBuilder: (context, index) => Row(
             children: [

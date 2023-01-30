@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:tamahaem/action/FeedAction.dart';
 import 'package:tamahaem/event/events/AbstractTamagotchiEvent.dart';
 
 class HungryEvent extends AbstractTamagotchiEvent {
 
-  String eventName = "Hungry";
+  Type actionKey = FeedAction().runtimeType;
   Icon eventIcon = Icon(Icons.no_meals ,size: 75);
 
   @override
