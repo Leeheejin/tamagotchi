@@ -8,7 +8,6 @@ class NewFriendlyGage extends StatelessWidget {
     required this.friendly,
   }) : super(key: key);
 
-  //TODO when friendly value changed, should gage updated with.
   @override
   Widget build(BuildContext context) {
     final int intFriendly = (friendly * 10).toInt();
