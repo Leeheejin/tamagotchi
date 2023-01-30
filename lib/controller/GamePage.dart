@@ -1,7 +1,7 @@
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
-import 'package:tamahaem/event/EventProvider.dart';
+import 'package:tamahaem/event/EventHandleProvider.dart';
 import 'package:tamahaem/controller/TamagotchiCounterController.dart';
 
 import '../domain/TamagotchiProvider.dart';
@@ -68,7 +68,7 @@ class _GamePageState extends State<GamePage> with AutomaticKeepAliveClientMixin<
               child: SizedBox(
                 width: MediaQuery.of(context).size.width * 0.1,
                 height: MediaQuery.of(context).size.height * 0.1,
-                child: EventProvider().currentEvent.eventIcon,
+                child: EventHandleProvider().currentEvent.eventIcon,
               ),
             ),
           ),
