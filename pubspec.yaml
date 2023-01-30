@@ -74,6 +74,8 @@ flutter:
     - assets/images/gage/
     - assets/images/background/
     - assets/images/icon/
+    - assets/images/item/
+    - assets/images/item/food/
 
 
   # To add assets to your application, add an assets section, like this:
