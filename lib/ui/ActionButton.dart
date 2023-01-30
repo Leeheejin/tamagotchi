@@ -63,8 +63,8 @@ class _ActionButtonState extends State<ActionButton> {
               bottom: 25,
               right: 15,
               //TODO: 버튼 클릭에 따라 아이콘이 움직이던가, 아니면 버튼이랑 아이콘이 한쌍이어야 함.
-              child: pressed ? Image.asset("assets/images/icon/tile000.png", fit: BoxFit.fill, color: Colors.black.withOpacity(0.1),)
-                  : Image.asset("assets/images/icon/tile000.png", fit: BoxFit.fill,),
+              child: pressed ? Image.asset("assets/images/icon/tile00${widget.index}.png", fit: BoxFit.fill, color: Colors.black.withOpacity(0.1),)
+                  : Image.asset("assets/images/icon/tile00${widget.index}.png", fit: BoxFit.fill,),
             )
           ],
         )
