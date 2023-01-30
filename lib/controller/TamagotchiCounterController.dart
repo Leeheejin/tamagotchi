@@ -15,8 +15,8 @@ class TamagotchiCounterController {
 
   TamagotchiCounterController(this._onTick) {
     _timer = Timer.periodic(const Duration(hours: 1), _afkPenalty);
-    _timer = Timer.periodic(const Duration(minutes: 2), _defaultPenalty);
-    _timer = Timer.periodic(const Duration(minutes: 2), startEventLoop);
+    _timer = Timer.periodic(const Duration(minutes: 30), _defaultPenalty);
+    _timer = Timer.periodic(const Duration(minutes: 15), startEventLoop);
   }
 
   void _afkPenalty(Timer timer) {

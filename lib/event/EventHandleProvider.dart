@@ -56,7 +56,7 @@ class EventHandleProvider {
 
     activeEvent();
 
-    _eventTimer = Timer(const Duration(minutes: 1), () {
+    _eventTimer = Timer(const Duration(minutes: 30), () {
       if (_eventTimer.isActive) {
         _tamagotchi.decreaseFriendly();
         logger.v("event failed ${_tamagotchi.friendlyValue}");
