@@ -33,12 +33,41 @@ class _ActionButtonState extends State<ActionButton> {
           });
         },
 
+        onTapCancel: () {
+          setState(() {
+            pressed = false;
+          });
+        },
+
         onTap: () {
           Navigator.push(context, MaterialPageRoute(builder: (context) => TamagotchiMap().actionButtonMap[widget.index]!));
         },
 
-        child: pressed ? Image.asset("assets/images/button/${widget.index}_pressed.png", width: 75, height: 75, fit: BoxFit.fill,)
-            : Image.asset("assets/images/button/${widget.index}_default.png", width: 75, height: 75, fit: BoxFit.fill,)
+        child: Stack(
+          children: [
+            Container(
+                width: 75,
+                height: 75,
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: pressed ? AssetImage("assets/images/button/${widget.index}_pressed.png")
+                            : AssetImage("assets/images/button/${widget.index}_default.png"),
+                        fit:BoxFit.cover
+                    )
+                ),
+                child: null
+            ),
+            Positioned(
+              top: 15,
+              left: 15,
+              bottom: 25,
+              right: 15,
+              //TODO: 버튼 클릭에 따라 아이콘이 움직이던가, 아니면 버튼이랑 아이콘이 한쌍이어야 함.
+              child: pressed ? Image.asset("assets/images/icon/tile000.png", fit: BoxFit.fill, color: Colors.black.withOpacity(0.1),)
+                  : Image.asset("assets/images/icon/tile000.png", fit: BoxFit.fill,),
+            )
+          ],
+        )
     );
   }
 }
