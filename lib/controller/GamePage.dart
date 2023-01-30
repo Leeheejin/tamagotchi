@@ -1,7 +1,7 @@
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
-import 'package:tamahaem/event/EventHandleProvider.dart';
+import 'package:tamahaem/event/impl/EventHandleProvider.dart';
 import 'package:tamahaem/controller/TamagotchiCounterController.dart';
 
 import '../domain/TamagotchiProvider.dart';

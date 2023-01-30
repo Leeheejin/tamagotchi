@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/animation.dart';
 import 'package:logger/logger.dart';
 import 'package:tamahaem/domain/TamagotchiProvider.dart';
-import 'package:tamahaem/event/EventHandleProvider.dart';
+import 'package:tamahaem/event/impl/EventHandleProvider.dart';
 
 import '../domain/Tamagotchi.dart';
 

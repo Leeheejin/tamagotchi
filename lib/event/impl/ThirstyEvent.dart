@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tamahaem/action/Impl/WaterAction.dart';
-import 'package:tamahaem/event/events/AbstractTamagotchiEvent.dart';
+import 'package:tamahaem/event/AbstractTamagotchiEvent.dart';
 
 class ThirstyEvent extends AbstractTamagotchiEvent {
 

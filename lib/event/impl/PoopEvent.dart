@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tamahaem/action/Impl/CleanAction.dart';
-import 'package:tamahaem/event/events/AbstractTamagotchiEvent.dart';
+import 'package:tamahaem/event/AbstractTamagotchiEvent.dart';
 
 class PoopEvent extends AbstractTamagotchiEvent {
 

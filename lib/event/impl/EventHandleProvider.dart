@@ -1,11 +1,11 @@
 import 'dart:async';
 
 import 'package:logger/logger.dart';
-import 'package:tamahaem/event/events/AbstractTamagotchiEvent.dart';
-import 'package:tamahaem/event/events/DefaultEvent.dart';
+import 'package:tamahaem/event/AbstractTamagotchiEvent.dart';
+import 'package:tamahaem/event/impl/DefaultEvent.dart';
 
-import '../domain/Tamagotchi.dart';
-import '../domain/TamagotchiProvider.dart';
+import '../../domain/Tamagotchi.dart';
+import '../../domain/TamagotchiProvider.dart';
 import 'EventGenerator.dart';
 
 class EventHandleProvider {
