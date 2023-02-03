@@ -8,8 +8,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:logger/logger.dart';
 
 class FeedActionUI extends FlameGame {
-  Vector2 _currentPosition = Vector2(-50, 150);
-  Vector2 _nextPosition = Vector2(35, 150);
+  Vector2 _currentPosition = Vector2(-150, 100);
+  Vector2 _nextPosition = Vector2(-50, 100);
+  Vector2 _currentPosition2 = Vector2(165, 000);
+  Vector2 _nextPosition2 = Vector2(165, 350);
   final spriteSize = Vector2(120.0, 120.0); //48
   late EffectController effectController;
   late SpriteAnimation animation;
@@ -37,7 +39,7 @@ class FeedActionUI extends FlameGame {
 
     spriteAnimationComponent = SpriteAnimationComponent(
       animation: animation,
-      scale: Vector2(2, 2), // 8
+      scale: Vector2(3, 3), // 8
       position: Vector2(_currentPosition.x, _currentPosition.y),
       size: spriteSize,
     );
@@ -102,8 +104,8 @@ class FeedActionUI extends FlameGame {
 
     SpriteAnimationComponent spriteAnimationComponent2 = SpriteAnimationComponent(
       animation: animation2,
-      scale: Vector2(4, 4), // 8
-      position: Vector2(60, -100),
+      scale: Vector2(6, 6), // 8
+      position: _currentPosition2,
       size: spriteSize,
     );
 
@@ -115,10 +117,10 @@ class FeedActionUI extends FlameGame {
     );
 
     Effect effect2 = MoveEffect.to(
-        Vector2(_nextPosition.x, _nextPosition.y),
+        Vector2(_nextPosition2.x, _nextPosition2.y),
         effectController2,
       onComplete: () {
-        spriteAnimationComponent2.position = _nextPosition;
+        spriteAnimationComponent2.position = _nextPosition2;
       }
     );
 

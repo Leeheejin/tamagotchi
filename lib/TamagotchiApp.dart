@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tamahaem/controller/GamePage.dart';
+import 'package:tamahaem/controller/GameController.dart';
 
 void main() {
   runApp(TamagotchiApp());
