@@ -10,7 +10,7 @@ class TamagotchiApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: 'Tamagotchi App',
-      home: GamePage(),
+      home: GameController(),
     );
   }
 }

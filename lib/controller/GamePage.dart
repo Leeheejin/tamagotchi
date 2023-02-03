@@ -1,24 +1,24 @@
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
+import 'package:tamahaem/controller/ui/ActionDialog.dart';
+import 'package:tamahaem/controller/ui/FriendlyGage.dart';
+import 'package:tamahaem/controller/ui/TamagotchiMovement.dart';
+import 'package:tamahaem/controller/ui/TamagotchiStatus.dart';
 import 'package:tamahaem/event/impl/EventHandleProvider.dart';
 import 'package:tamahaem/controller/TamagotchiCounterController.dart';
 
 import '../domain/TamagotchiProvider.dart';
-import '../ui/ActionDialog.dart';
-import '../ui/FriendlyGage.dart';
-import '../ui/TamagotchiMovement.dart';
-import '../ui/TamagotchiStatus.dart';
 import '../utils/SoundPlayer.dart';
 
-class GamePage extends StatefulWidget {
-  const GamePage({super.key});
+class GameController extends StatefulWidget {
+  const GameController({super.key});
 
   @override
-  _GamePageState createState() => _GamePageState();
+  _GameControllerState createState() => _GameControllerState();
 }
 
-class _GamePageState extends State<GamePage> with AutomaticKeepAliveClientMixin<GamePage> {
+class _GameControllerState extends State<GameController> with AutomaticKeepAliveClientMixin<GameController> {
     SoundPlayer soundPlayer = SoundPlayer();
     late TamagotchiCounterController _tamagotchiPenaltyController;
     late TamagotchiStatus _tamagotchiStatus;

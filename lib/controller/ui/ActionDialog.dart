@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tamahaem/ui/ActionButton.dart';
+import 'package:tamahaem/controller/ui/ActionButton.dart';
 
 
 class ActionDialog extends StatefulWidget {
