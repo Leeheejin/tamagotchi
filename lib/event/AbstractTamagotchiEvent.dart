@@ -10,7 +10,6 @@ abstract class AbstractTamagotchiEvent {
   late Type actionKey;
   Logger logger = Logger();
 
-  //TODO 이벤트 타입과 액션 타입을 비교하여 핸들되었는지 체크 필요.
   void handleEvent(Type actionType) {
 
     logger.v("action ocurred: $actionType");
