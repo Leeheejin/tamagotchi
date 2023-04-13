@@ -5,21 +5,40 @@ import 'package:flame/sprite.dart';
 import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
+import 'package:tamahaem/controller/GameController.dart';
 
 class FeedActionUI extends FlameGame {
+  final BuildContext context;
+
+  FeedActionUI({required this.context});
+
   //TODO 이미지 사이즈와 벡터 사이의 비율을 찾아내야 함. 이미지 사이즈 스펙 고정, 아이콘 스펙 고정 필요.
-  Vector2 _currentPosition = Vector2(-150, 100);
-  Vector2 _nextPosition = Vector2(-50, 100);
-  Vector2 _currentPosition2 = Vector2(165, 000);
-  Vector2 _nextPosition2 = Vector2(165, 350);
+  final Vector2 _characterInitPosition = Vector2(-150, 100);
+  final Vector2 _characterCenterPosition = Vector2(-50, 100);
+  final Vector2 _foodInitPosition = Vector2(165, 000);
+  final Vector2 _foodCenterPosition = Vector2(165, 350);
+  final Vector2 _characterClosePosition = Vector2(300, 100);
   final spriteSize = Vector2(120.0, 120.0); //48
+
+  late SpriteAnimationComponent characterAnimationComponent;
   late EffectController characterEffectController;
+  late Effect characterEffect;
   late SpriteAnimation characterAnimation;
   late SpriteSheet characterSheet;
+
+  late SpriteAnimationComponent foodDropAnimationComponent;
+  late EffectController foodDropEffectController;
+  late Effect foodDropEffect;
+  late SpriteAnimation characterArriveAnimation;
   late SpriteSheet foodSheet;
-  late SpriteAnimationComponent spriteAnimationComponent;
-  late Effect effect;
+
+  late SpriteAnimation foodDropAnimation;
+  late SpriteAnimation characterEatAnimation;
+  late SpriteAnimation characterEatDoneAnimation;
+
+  int MAX_EAT_ANIMATION_REPEAT = 2;
   Logger logger = Logger();
 
   @override
@@ -38,10 +57,10 @@ class FeedActionUI extends FlameGame {
     // to는 불러오는 이미지 row= 0, to 4은 아래직진 1,4 위직진, 2,4 좌직진, 3,4 우직진
     characterAnimation = characterSheet.createAnimation(row: 3, stepTime: 0.3, to: 4);
 
-    spriteAnimationComponent = SpriteAnimationComponent(
+    characterAnimationComponent = SpriteAnimationComponent(
       animation: characterAnimation,
       scale: Vector2(3, 3), // 8
-      position: Vector2(_currentPosition.x, _currentPosition.y),
+      position: Vector2(_characterInitPosition.x, _characterInitPosition.y),
       size: spriteSize,
     );
 
@@ -53,29 +72,29 @@ class FeedActionUI extends FlameGame {
       curve: Curves.linear
     );
 
-    effect = MoveEffect.to(
-      Vector2(_nextPosition.x, _nextPosition.y),
+    characterEffect = MoveEffect.to(
+      Vector2(_characterCenterPosition.x, _characterCenterPosition.y),
       characterEffectController,
-      onComplete: () => { arriveAnimation() }
+      onComplete: () => { characterArrive() }
     );
 
     add(
-      spriteAnimationComponent
+      characterAnimationComponent
         ..add(
-            effect
+            characterEffect
         ),
     );
   }
 
-  void arriveAnimation() {
+  void characterArrive() {
 
-    spriteAnimationComponent.position = _nextPosition;
+    characterAnimationComponent.position = _characterCenterPosition;
 
-    spriteAnimationComponent.remove(effect);
+    characterAnimationComponent.remove(characterEffect);
 
-    SpriteAnimation characterArriveAnimation = characterSheet.createAnimation(row: 0, stepTime: 0.1, to: 1);
+    characterArriveAnimation = characterSheet.createAnimation(row: 0, stepTime: 0.1, to: 1);
 
-    spriteAnimationComponent.animation = characterArriveAnimation;
+    characterAnimationComponent.animation = characterArriveAnimation;
 
 
     characterEffectController = EffectController(
@@ -85,43 +104,45 @@ class FeedActionUI extends FlameGame {
         curve: Curves.linear
     );
 
-    effect = MoveEffect.to(
-        Vector2(_nextPosition.x, _nextPosition.y),
+    characterEffect = MoveEffect.to(
+        Vector2(_characterCenterPosition.x, _characterCenterPosition.y),
         characterEffectController,
-        onComplete: () => { foodDropAnimation() }
+        onComplete: () => { foodDrop() }
     );
 
-    spriteAnimationComponent
+    characterAnimationComponent
         .add(
-        effect
+        characterEffect
     );
   }
 
-  void foodDropAnimation() async {
+  void foodDrop() async {
 
     final spriteSize = Vector2(16.0, 16.0);
 
-    SpriteAnimation foodDropAnimation = foodSheet.createAnimation(row: 0, stepTime: 0.1, to: 1);
+    foodDropAnimation = foodSheet.createAnimation(row: 0, stepTime: 0.1, to: 1);
 
-    SpriteAnimationComponent foodDropAnimationComponent = SpriteAnimationComponent(
+    foodDropAnimationComponent = SpriteAnimationComponent(
       animation: foodDropAnimation,
       scale: Vector2(6, 6), // 8
-      position: _currentPosition2,
+      position: _foodInitPosition,
       size: spriteSize,
     );
 
-    EffectController foodDropEffectController = EffectController(
+    foodDropEffectController = EffectController(
         duration: 3,
         reverseDuration: 0,
         infinite: false,
         curve: Curves.linear
     );
 
-    Effect foodDropEffect = MoveEffect.to(
-        Vector2(_nextPosition2.x, _nextPosition2.y),
+    foodDropEffect = MoveEffect.to(
+        Vector2(_foodCenterPosition.x, _foodCenterPosition.y),
         foodDropEffectController,
       onComplete: () {
-        foodDropAnimationComponent.position = _nextPosition2;
+        foodDropAnimationComponent.position = _foodCenterPosition;
+        foodDropAnimationComponent.opacity = 0;
+        eat();
       }
     );
 
@@ -134,10 +155,87 @@ class FeedActionUI extends FlameGame {
 
   }
 
-  void foodEatingAnimation() {
-    //todo: food eating animation.
+  // When the animation of the food coming down from above is over, the animation of the character eating the food is exposed.
+  void eat([int repeat = 1]) {
+
+    // setting eating animation
+    characterEatAnimation = characterSheet.createAnimation(row: 1, stepTime: 0.1, to: 2);
+
+    // setting animation component
+    characterAnimationComponent.animation = characterEatAnimation;
+
+    // setting effect controller
+    characterEffectController = EffectController(
+        duration: 3,
+        reverseDuration: 0,
+        infinite: false,
+        curve: Curves.linear
+    );
+
+    // setting effect
+    characterEffect = MoveEffect.to(
+        Vector2(_characterCenterPosition.x, _characterCenterPosition.y),
+        characterEffectController,
+        onComplete: () => {
+
+          if (repeat > MAX_EAT_ANIMATION_REPEAT) {
+            eatingDone()
+          } else {
+            eat(repeat + 1)
+          }
+        }
+    );
+
+    // adding effect to animation component
+    characterAnimationComponent
+        .add(
+        characterEffect
+    );
   }
 
+  void eatingDone() {
+
+    // after 2 times of eating animation, the character goes to the end of right position.
+    characterAnimationComponent.position = _characterCenterPosition;
+
+    // removing effect from animation component
+    characterAnimationComponent.remove(characterEffect);
+
+    // setting animation
+    characterEatDoneAnimation = characterSheet.createAnimation(row: 3, stepTime: 0.1, to: 4);
+
+    // setting animation component
+    characterAnimationComponent.animation = characterEatDoneAnimation;
+
+    // setting effect controller
+    characterEffectController = EffectController(
+        duration: 3,
+        reverseDuration: 0,
+        infinite: false,
+        curve: Curves.linear
+    );
+
+    // setting effect
+    characterEffect = MoveEffect.to(
+        Vector2(_characterClosePosition.x, _characterClosePosition.y),
+        characterEffectController,
+        onComplete: () => {
+          characterAnimationComponent.position = _characterClosePosition,
+          logger.d("eating done animation complete"),
+          close()
+        }
+    );
+
+    // adding effect to animation component
+    characterAnimationComponent
+        .add(
+        characterEffect
+    );
+  }
+
+  void close() {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => const GameController()));
+  }
 
 }
 

@@ -2,13 +2,11 @@
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:tamahaem/action/AbstractAction.dart';
-import 'package:tamahaem/domain/Tamagotchi.dart';
-import 'package:tamahaem/domain/TamagotchiProvider.dart';
 
+import '../../utils/TamagotchiMap.dart';
 import '../ui/FeedActionUI.dart';
 
 class FeedAction extends AbstractAction {
-  Tamagotchi tamagotchi = TamagotchiProvider().tamagotchi;
 
   @override
   Widget build(BuildContext context) {
@@ -16,10 +14,15 @@ class FeedAction extends AbstractAction {
       body: SizedBox(
           width: 0.1,
           height: 0.1,
-          child: GameWidget(game: FeedActionUI())
+          child: ElevatedButton(
+            onPressed: () {
+              TamagotchiMap().actionNotifier(runtimeType);
+            },
+            child: GameWidget(game: FeedActionUI(context: context))
+          ),
       ),
     );
-    // return Scaffold(
+    // Scaffold(
     //   backgroundColor: Colors.blueAccent,
     //   body: Center(
     //     child: ElevatedButton(
