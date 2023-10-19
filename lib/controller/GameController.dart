@@ -22,6 +22,7 @@ class _GameControllerState extends State<GameController> with AutomaticKeepAlive
     SoundPlayer soundPlayer = SoundPlayer();
     late TamagotchiCounterController _tamagotchiPenaltyController;
     late TamagotchiStatus _tamagotchiStatus;
+    late FriendlyGage _friendlyGage;
     var logger = Logger();
 
   @override
@@ -32,6 +33,11 @@ class _GameControllerState extends State<GameController> with AutomaticKeepAlive
     });
 
     _tamagotchiStatus = TamagotchiStatus();
+
+    _friendlyGage = FriendlyGage(
+      key: UniqueKey(),
+      friendly: TamagotchiProvider.instance.tamagotchi.friendlyValue,
+    );
 
     super.initState();
   }
@@ -78,10 +84,7 @@ class _GameControllerState extends State<GameController> with AutomaticKeepAlive
               child: SizedBox(
                 height: 50,
                 width: MediaQuery.of(context).size.width * 0.5,
-                child: FriendlyGage(
-                    key: UniqueKey(),
-                    friendly: TamagotchiProvider.instance.tamagotchi.friendlyValue,
-                ),
+                child: _friendlyGage,
               )
           ),
           Positioned(
