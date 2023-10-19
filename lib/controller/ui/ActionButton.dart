@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tamahaem/utils/TamagotchiMap.dart';
 
-import '../../animation/testTransition.dart';
+import '../../animation/AnimationPageRoute.dart';
 
 class ActionButton extends StatefulWidget {
   int index = 0;
@@ -43,7 +43,7 @@ class _ActionButtonState extends State<ActionButton> {
 
         onTap: () {
           //Navigator.of(context).push(CustomPageRoute(widget: TamagotchiMap.actionButtonMap[widget.index]!, transition: TransitionFactory.getRandomTransition()));
-          Navigator.of(context).push(CustomPageRoute2(widget: TamagotchiMap.actionButtonMap[widget.index]!));
+          Navigator.of(context).push(AnimationPageRoute(widget: TamagotchiMap.actionButtonMap[widget.index]!));
         },
 
         child: Stack(
