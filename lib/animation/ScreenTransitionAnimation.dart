@@ -2,20 +2,31 @@ import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 
 class CustomPageRoute extends PageRouteBuilder {
   final Widget widget;
+  final bool useCircle;
+  final bool isHorizontal;
 
-  CustomPageRoute({required this.widget})
+  factory CustomPageRoute({required Widget widget}) {
+    final useCircle = Random().nextBool();
+    final isHorizontal = Random().nextBool();
+    return CustomPageRoute._internal(widget: widget, useCircle: useCircle, isHorizontal: isHorizontal);
+  }
+
+  CustomPageRoute._internal({required this.widget, required this.useCircle, required this.isHorizontal})
       : super(
-    pageBuilder: (context, animation, secondaryAnimation) => widget,
+      pageBuilder: (context, animation, secondaryAnimation) => widget,
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        Logger logger = Logger();
+        logger.v("called");
         return AbsorbPointer(
           absorbing: animation.status == AnimationStatus.forward,
           child: Stack(
             children: [
               child,
-              CombinedTransition(animation: animation),
+              CombinedTransition(animation: animation, useCircle: useCircle, isHorizontal: isHorizontal),
             ],
           ),
         );
@@ -26,10 +37,13 @@ class CustomPageRoute extends PageRouteBuilder {
   Duration get transitionDuration => Duration(seconds: 1);
 }
 
+
 class CombinedTransition extends StatelessWidget {
   final Animation<double> animation;
+  final bool useCircle;
+  final bool isHorizontal;
 
-  CombinedTransition({required this.animation});
+  CombinedTransition({required this.animation, required this.useCircle, required this.isHorizontal});
 
   @override
   Widget build(BuildContext context) {

@@ -5,7 +5,7 @@ import 'package:tamahaem/domain/TamagotchiProvider.dart';
 import 'package:tamahaem/event/impl/EventHandleProvider.dart';
 
 abstract class AbstractTamagotchiEvent {
-  Tamagotchi tamagotchi = TamagotchiProvider().tamagotchi;
+  Tamagotchi tamagotchi = TamagotchiProvider.instance.tamagotchi;
   late Icon eventIcon;
   late Type actionKey;
   Logger logger = Logger();
@@ -15,7 +15,7 @@ abstract class AbstractTamagotchiEvent {
     logger.v("action ocurred: $actionType");
 
     if (actionKey == actionType) {
-      EventHandleProvider().handleEvent();
+      EventHandleProvider.instance.handleEvent();
     }
   }
 

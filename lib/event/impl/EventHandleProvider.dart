@@ -9,7 +9,7 @@ import '../../domain/TamagotchiProvider.dart';
 import 'EventGenerator.dart';
 
 class EventHandleProvider {
-  Tamagotchi _tamagotchi = TamagotchiProvider().tamagotchi;
+  Tamagotchi _tamagotchi = TamagotchiProvider.instance.tamagotchi;
   EventGenerator _eventGenerator = EventGenerator();
   AbstractTamagotchiEvent _currentEvent = DefaultEvent();
   Logger logger = Logger();
@@ -17,11 +17,7 @@ class EventHandleProvider {
   late Timer _eventTimer;
   late AbstractTamagotchiEvent _tamagotchiEvent;
 
-  static final EventHandleProvider _instance = EventHandleProvider._internal();
-
-  factory EventHandleProvider() {
-    return _instance;
-  }
+  static final EventHandleProvider instance = EventHandleProvider._internal();
 
   EventHandleProvider._internal() {
   }

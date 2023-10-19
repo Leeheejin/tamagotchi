@@ -4,7 +4,7 @@ import 'package:tamahaem/domain/TamagotchiProvider.dart';
 import '../../domain/Tamagotchi.dart';
 
 class TamagotchiStatus extends StatelessWidget {
-  Tamagotchi tamagotchi = TamagotchiProvider().tamagotchi;
+  Tamagotchi tamagotchi = TamagotchiProvider.instance.tamagotchi;
 
   String getHungerImage() {
     if (tamagotchi.hunger >= 75) {

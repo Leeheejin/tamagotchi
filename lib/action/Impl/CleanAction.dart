@@ -6,7 +6,7 @@ import 'package:tamahaem/domain/TamagotchiProvider.dart';
 import 'package:tamahaem/utils/TamagotchiMap.dart';
 
 class CleanAction extends AbstractAction {
-  Tamagotchi tamagotchi = TamagotchiProvider().tamagotchi;
+  Tamagotchi tamagotchi = TamagotchiProvider.instance.tamagotchi;
 
   @override
   Widget build(BuildContext context) {

@@ -11,7 +11,7 @@ import '../action/Impl/FeedAction.dart';
 
 class TamagotchiMap {
 
-  final Map<int, Widget> _actionButtonMap = {
+  static final Map<int, Widget> _actionButtonMap = {
     0: FeedAction(),
     1: WaterAction(),
     2: PlayAction(),
@@ -19,7 +19,7 @@ class TamagotchiMap {
     4: CareAction(),
   };
 
-  void actionNotifier(Type type) => { EventHandleProvider().currentEvent.handleEvent(type) };
+  void actionNotifier(Type type) => { EventHandleProvider.instance.currentEvent.handleEvent(type) };
 
-  Map get actionButtonMap => _actionButtonMap;
+  static Map get actionButtonMap => _actionButtonMap;
 }

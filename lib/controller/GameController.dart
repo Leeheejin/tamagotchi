@@ -68,7 +68,7 @@ class _GameControllerState extends State<GameController> with AutomaticKeepAlive
               child: SizedBox(
                 width: MediaQuery.of(context).size.width * 0.1,
                 height: MediaQuery.of(context).size.height * 0.1,
-                child: EventHandleProvider().currentEvent.eventIcon,
+                child: EventHandleProvider.instance.currentEvent.eventIcon,
               ),
             ),
           ),
@@ -80,7 +80,7 @@ class _GameControllerState extends State<GameController> with AutomaticKeepAlive
                 width: MediaQuery.of(context).size.width * 0.5,
                 child: FriendlyGage(
                     key: UniqueKey(),
-                    friendly: TamagotchiProvider().tamagotchi.friendlyValue,
+                    friendly: TamagotchiProvider.instance.tamagotchi.friendlyValue,
                 ),
               )
           ),
