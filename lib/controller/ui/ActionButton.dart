@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tamahaem/utils/TamagotchiMap.dart';
 
-import '../../animation/AnimationPageRoute.dart';
+import '../../transition/AnimationPageRoute.dart';
 
 class ActionButton extends StatefulWidget {
   int index = 0;
