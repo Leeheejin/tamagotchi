@@ -7,7 +7,6 @@ import 'package:flame/effects.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
-import 'package:tamahaem/controller/GameController.dart';
 
 class FeedActionUI extends FlameGame {
   final BuildContext context;
@@ -236,27 +235,27 @@ class FeedActionUI extends FlameGame {
   }
 
   void close() {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => const GameController()));
+    Navigator.of(context).pop();
   }
 
   //present chat dialog
-  void presentChatDialog() {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text("Chat"),
-          content: Text("Hello"),
-          actions: [
-            TextButton(
-              child: Text("Close"),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
+  // void presentChatDialog() {
+  //   showDialog(
+  //     context: context,
+  //     builder: (BuildContext context) {
+  //       return AlertDialog(
+  //         title: Text("Chat"),
+  //         content: Text("Hello"),
+  //         actions: [
+  //           TextButton(
+  //             child: Text("Close"),
+  //             onPressed: () {
+  //               Navigator.of(context).pop();
+  //             },
+  //           ),
+  //         ],
+  //       );
+  //     },
+  //   );
+  // }
 }
