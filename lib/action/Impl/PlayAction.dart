@@ -17,7 +17,7 @@ class PlayAction extends AbstractAction {
           child: const Text("돌아가기"),
           onPressed: () {
             TamagotchiMap().actionNotifier(runtimeType);
-            Navigator.pop(context);
+            Navigator.of(context).pop();
           },
         ),
       ),
