@@ -43,8 +43,6 @@ class FeedActionUI extends FlameGame {
   @override
   Future<void> onLoad() async {
 
-    //presentChatDialog();
-
     characterSheet = SpriteSheet(
       image: await images.load('character/test.png'),
       srcSize: Vector2(120.0, 120.0),
@@ -237,25 +235,4 @@ class FeedActionUI extends FlameGame {
   void close() {
     Navigator.of(context).pop();
   }
-
-  //present chat dialog
-  // void presentChatDialog() {
-  //   showDialog(
-  //     context: context,
-  //     builder: (BuildContext context) {
-  //       return AlertDialog(
-  //         title: Text("Chat"),
-  //         content: Text("Hello"),
-  //         actions: [
-  //           TextButton(
-  //             child: Text("Close"),
-  //             onPressed: () {
-  //               Navigator.of(context).pop();
-  //             },
-  //           ),
-  //         ],
-  //       );
-  //     },
-  //   );
-  // }
 }
