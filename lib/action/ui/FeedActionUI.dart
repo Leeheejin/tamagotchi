@@ -60,22 +60,22 @@ class FeedActionUI extends FlameGame {
     await init();
 
     switch (currentStep) {
-      case 1:
+      case 0:
         characterAppear();
         break;
-      case 2:
+      case 1:
         characterArrived();
         foodDrop();
         break;
-      case 3:
+      case 2:
         characterArrived();
         eat();
         break;
-      case 4:
+      case 3:
         characterArrived();
         eatingDone();
         break;
-      case 5:
+      case 4:
         close();
         break;
       default:
