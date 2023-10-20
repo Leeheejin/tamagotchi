@@ -67,17 +67,14 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/images/character/tamagotchi.png
-    - assets/images/character/NewTamagotchi.json
-    - assets/images/character/tamagotchi2.png
-    - assets/images/status/zero.png
-    - assets/images/status/25.png
-    - assets/images/status/50.png
-    - assets/images/status/75.jpg
-    - assets/images/button/
     - assets/images/character/
+    - assets/images/status/
+    - assets/images/button/
     - assets/images/gage/
     - assets/images/background/
+    - assets/images/icon/
+    - assets/images/item/
+    - assets/images/item/food/
 
 
   # To add assets to your application, add an assets section, like this:

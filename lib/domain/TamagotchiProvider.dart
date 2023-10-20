@@ -1,12 +1,8 @@
 import 'Tamagotchi.dart';
 
 class TamagotchiProvider {
-  static final TamagotchiProvider _instance = TamagotchiProvider._internal();
+  static final TamagotchiProvider instance = TamagotchiProvider._internal();
   late Tamagotchi _tamagotchi;
-
-  factory TamagotchiProvider() {
-    return _instance;
-  }
 
   TamagotchiProvider._internal() {
     _tamagotchi = Tamagotchi();

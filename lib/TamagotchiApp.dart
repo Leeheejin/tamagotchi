@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tamahaem/controller/GamePage.dart';
+import 'package:tamahaem/controller/GameController.dart';
 
 void main() {
   runApp(TamagotchiApp());
@@ -10,7 +10,7 @@ class TamagotchiApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: 'Tamagotchi App',
-      home: GamePage(),
+      home: GameController(),
     );
   }
 }
