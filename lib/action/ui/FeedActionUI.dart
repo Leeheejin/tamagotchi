@@ -180,7 +180,7 @@ class FeedActionUI extends FlameGame {
     );
 
     foodDropEffectController = EffectController(
-        duration: 2,
+        duration: 1,
         reverseDuration: 0,
         infinite: false,
         curve: Curves.linear
