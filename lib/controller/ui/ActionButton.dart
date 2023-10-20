@@ -42,6 +42,7 @@ class _ActionButtonState extends State<ActionButton> {
         },
 
         onTap: () {
+          Navigator.of(context).pop(true);
           Navigator.of(context).push(AnimationPageRoute(widget: TamagotchiMap().getAction(widget.index)));
         },
 
