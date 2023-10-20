@@ -42,6 +42,7 @@ class EventHandleProvider {
 
   void handleEvent() {
     logger.v("event succeed: ${currentEvent.runtimeType}");
+    _tamagotchi.increaseFriendly();
     inactiveEvent();
   }
 

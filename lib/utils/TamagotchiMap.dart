@@ -21,5 +21,10 @@ class TamagotchiMap {
 
   void actionNotifier(Type type) => { EventHandleProvider.instance.currentEvent.handleEvent(type) };
 
-  static Map get actionButtonMap => _actionButtonMap;
+  Widget getAction(int index) {
+
+    actionNotifier(_actionButtonMap[index].runtimeType);
+
+    return _actionButtonMap[index]!;
+  }
 }

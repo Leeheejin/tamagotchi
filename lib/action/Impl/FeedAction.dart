@@ -4,7 +4,6 @@ import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:tamahaem/action/AbstractAction.dart';
 
-import '../../utils/TamagotchiMap.dart';
 import '../ui/FeedActionUI.dart';
 import '../ui/chat/ChatBox.dart';
 
@@ -23,12 +22,6 @@ class _FeedActionState extends State<FeedAction> {
     TyperAnimatedText("햄쥐는 의지가 차오른다."),
     TyperAnimatedText("")
   ];
-
-  @override
-  void initState() {
-    TamagotchiMap().actionNotifier(runtimeType);
-    super.initState();
-  }
 
   void _updateStep() {
     if (animationDone && currentStep < messages.length - 1) {

@@ -64,7 +64,7 @@ class _GameControllerState extends State<GameController> with AutomaticKeepAlive
             top: MediaQuery.of(context).size.height * 0.25,
             left: MediaQuery.of(context).size.width * 0.05,
             child: Visibility(
-              visible: true,
+              visible: EventHandleProvider.instance.isEventActive,
               child: ClipOval(
               child: SizedBox.fromSize(
                 size: Size.fromRadius(MediaQuery.of(context).size.width * 0.1),
