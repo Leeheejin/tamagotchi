@@ -6,6 +6,7 @@ import 'package:tamahaem/event/impl/DefaultEvent.dart';
 
 import '../../domain/Tamagotchi.dart';
 import '../../domain/TamagotchiProvider.dart';
+import '../../utils/Constants.dart';
 import 'EventGenerator.dart';
 
 class EventHandleProvider {
@@ -55,7 +56,7 @@ class EventHandleProvider {
 
     activeEvent();
 
-    _eventTimer = Timer(const Duration(minutes: 30), () {
+    _eventTimer = Timer(const Duration(minutes: DAMAGOCHI_EVENT_TIME_MINUTE), () {
       if (_eventTimer.isActive) {
         _tamagotchi.decreaseFriendly();
         logger.v("event failed ${_tamagotchi.friendlyValue}");

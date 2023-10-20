@@ -6,6 +6,7 @@ import 'package:tamahaem/domain/TamagotchiProvider.dart';
 import 'package:tamahaem/event/impl/EventHandleProvider.dart';
 
 import '../domain/Tamagotchi.dart';
+import '../utils/Constants.dart';
 
 class TamagotchiCounterController {
   late Timer _timer;
@@ -14,9 +15,9 @@ class TamagotchiCounterController {
   Logger logger = Logger();
 
   TamagotchiCounterController(this._onTick) {
-    _timer = Timer.periodic(const Duration(hours: 1), _afkPenalty);
-    _timer = Timer.periodic(const Duration(minutes: 30), _defaultPenalty);
-    _timer = Timer.periodic(const Duration(minutes: 15), startEventLoop);
+    _timer = Timer.periodic(const Duration(hours: AFK_PENALTY_EVENT_TIME_HOUR), _afkPenalty);
+    _timer = Timer.periodic(const Duration(hours: DEAFULT_EVENT_TIME_HOUR), _defaultPenalty);
+    _timer = Timer.periodic(const Duration(minutes: DAMAGOCHI_EVENT_TIME_MINUTE), startEventLoop);
   }
 
   void _afkPenalty(Timer timer) {
