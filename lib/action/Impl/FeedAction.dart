@@ -18,7 +18,7 @@ class FeedAction extends AbstractAction {
             onPressed: () {
               TamagotchiMap().actionNotifier(runtimeType);
             },
-            child: GameWidget(game: FeedActionUI(context: context))
+            child: GameWidget(game: FeedActionUI(context: context, currentStep: 4))
           ),
       ),
     );
