@@ -11,8 +11,9 @@ import 'package:logger/logger.dart';
 class FeedActionUI extends FlameGame {
   final BuildContext context;
   final int currentStep;
+  final VoidCallback onCompleted;
 
-  FeedActionUI({required this.context, required this.currentStep});
+  FeedActionUI({required this.context, required this.currentStep, required this.onCompleted});
 
   //TODO 이미지 사이즈와 벡터 사이의 비율을 찾아내야 함. 이미지 사이즈 스펙 고정, 아이콘 스펙 고정 필요.
   final Vector2 _characterInitPosition = Vector2(-150, 100);
@@ -50,8 +51,6 @@ class FeedActionUI extends FlameGame {
   late Effect characterEatingDoneEffect;
   late SpriteAnimation characterEatingDoneAnimation;
 
-
-  int MAX_EAT_ANIMATION_REPEAT = 2;
   Logger logger = Logger();
 
   @override
@@ -72,10 +71,6 @@ class FeedActionUI extends FlameGame {
         eat();
         break;
       case 3:
-        characterArrived();
-        eatingDone();
-        break;
-      case 4:
         close();
         break;
       default:
@@ -123,7 +118,7 @@ class FeedActionUI extends FlameGame {
         onComplete: () {
           characterAppearAnimationComponent.position = _characterCenterPosition;
           characterAppearAnimationComponent.removeFromParent();
-          characterArrived();
+          characterArrived(true);
         }
     );
 
@@ -135,7 +130,7 @@ class FeedActionUI extends FlameGame {
     );
   }
 
-  void characterArrived() {
+  void characterArrived([bool needCompleted = false]) {
 
     characterArriveAnimation = characterSheet.createAnimation(row: 0, stepTime: 0.1, to: 1);
 
@@ -147,7 +142,7 @@ class FeedActionUI extends FlameGame {
     );
 
     characterArriveEffectController = EffectController(
-        duration: 3,
+        duration: 1,
         reverseDuration: 0,
         infinite: false,
         curve: Curves.linear
@@ -155,7 +150,12 @@ class FeedActionUI extends FlameGame {
 
     characterArriveEffect = MoveEffect.to(
         Vector2(_characterCenterPosition.x, _characterCenterPosition.y),
-        characterArriveEffectController
+        characterArriveEffectController,
+      onComplete: () {
+        if (needCompleted) {
+          onCompleted();
+        }
+      }
     );
 
     add(
@@ -180,7 +180,7 @@ class FeedActionUI extends FlameGame {
     );
 
     foodDropEffectController = EffectController(
-        duration: 3,
+        duration: 2,
         reverseDuration: 0,
         infinite: false,
         curve: Curves.linear
@@ -191,6 +191,7 @@ class FeedActionUI extends FlameGame {
         foodDropEffectController,
       onComplete: () {
         foodDropAnimationComponent.position = _foodCenterPosition;
+        onCompleted();
       }
     );
 
@@ -216,7 +217,7 @@ class FeedActionUI extends FlameGame {
 
     // setting effect controller
     characterEatEffectController = EffectController(
-        duration: 3,
+        duration: 2,
         reverseDuration: 0,
         infinite: false,
         curve: Curves.linear
@@ -226,6 +227,11 @@ class FeedActionUI extends FlameGame {
     characterEatEffect = MoveEffect.to(
         Vector2(_characterCenterPosition.x, _characterCenterPosition.y),
         characterEatEffectController,
+      onComplete: () {
+        characterEatAnimationComponent.removeFromParent();
+        characterArriveAnimationComponent.removeFromParent();
+        eatingDone();
+      }
     );
 
     // adding effect to animation component
@@ -250,7 +256,7 @@ class FeedActionUI extends FlameGame {
 
     // setting effect controller
     characterEatingDoneEffectController = EffectController(
-        duration: 3,
+        duration: 1,
         reverseDuration: 0,
         infinite: false,
         curve: Curves.linear
@@ -260,15 +266,19 @@ class FeedActionUI extends FlameGame {
     characterEatingDoneEffect = MoveEffect.to(
         Vector2(_characterClosePosition.x, _characterClosePosition.y),
         characterEatingDoneEffectController,
-        onComplete: () => {
-          characterEatingDoneAnimationComponent.position = _characterClosePosition,
+        onComplete: () {
+          characterEatingDoneAnimationComponent.position = _characterClosePosition;
+          characterEatingDoneAnimationComponent.removeFromParent();
+          onCompleted();
         }
     );
 
     // adding effect to animation component
-    characterEatingDoneAnimationComponent
-        .add(
-        characterEatingDoneEffect
+    add(
+      characterEatingDoneAnimationComponent
+          ..add(
+          characterEatingDoneEffect
+      )
     );
   }
 

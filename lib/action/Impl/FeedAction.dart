@@ -31,20 +31,20 @@ class _FeedActionState extends State<FeedAction> {
   }
 
   void _updateStep() {
-    setState(() {
-      print(currentStep);
-      if (animationDone && currentStep < messages.length - 1) {
+    print(currentStep);
+    if (animationDone && currentStep < messages.length - 1) {
+      setState(() {
         currentStep++;
         animationDone = false;
-      }
-    });
+      });
+    }
   }
 
   void _onAnimationDone() {
-    setState(() {
-      print("done");
-      animationDone = true;
-    });
+    print("done");
+    if (!animationDone) {
+        animationDone = true;
+    }
   }
 
   @override
