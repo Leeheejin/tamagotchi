@@ -17,10 +17,9 @@ class _FeedActionState extends State<FeedAction> {
   bool animationDone = false;
   int currentStep = 0;
   final List<String> messages = [
-    "",
-    "Step 1: See the red box.",
-    "Step 2: Now it turns green.",
-    "Step 3: Finally, blue.",
+    "햄쥐는 배가 고프다...",
+    "맛있는 사과를 받았다!",
+    "햄쥐는 의지가 차오른다.",
     ""
   ];
 
