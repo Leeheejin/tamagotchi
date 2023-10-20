@@ -5,6 +5,7 @@ import 'package:tamahaem/action/AbstractAction.dart';
 
 import '../../utils/TamagotchiMap.dart';
 import '../ui/FeedActionUI.dart';
+import '../ui/chat/DamagochiChatBox.dart';
 
 class FeedAction extends AbstractAction {
 
@@ -13,44 +14,48 @@ class FeedAction extends AbstractAction {
 }
 
 class _FeedActionState extends State<FeedAction> {
-  int currentStep = 1;
+  int currentStep = 0;
   final List<String> messages = [
+    "",
     "Step 1: See the red box.",
     "Step 2: Now it turns green.",
     "Step 3: Finally, blue.",
   ];
 
   void _resetChatBox() {
+    TamagotchiMap().actionNotifier(runtimeType);
     setState(() {
-      currentStep = 1;
+      currentStep = 0;
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SizedBox(
-        width: 0.1,
-        height: 0.1,
-        child: ElevatedButton(
-            onPressed: () {
-              TamagotchiMap().actionNotifier(runtimeType);
-            },
-            child: GameWidget(game: FeedActionUI(context: context, currentStep: currentStep))
-        ),
+      body: Stack(
+        children: [
+          Positioned(
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
+              child: Column(),
+            ),
+          ),
+          SizedBox(
+              width: 0.1,
+              height: 0.1,
+              child: GameWidget(game: FeedActionUI(context: context, currentStep: currentStep))
+          ),
+          Positioned(
+            bottom: MediaQuery.of(context).size.height * 0.1,
+            left: MediaQuery.of(context).size.width * 0.1,
+            child: ChatBox(
+                messages: messages,
+                onFinished: _resetChatBox,
+              ),
+            ),
+        ],
       ),
     );
-    // Scaffold(
-    //   backgroundColor: Colors.blueAccent,
-    //   body: Center(
-    //     child: ElevatedButton(
-    //       child: const Text("돌아가기"),
-    //       onPressed: () {
-    //         TamagotchiMap().actionNotifier(runtimeType);
-    //         Navigator.pop(context);
-    //       },
-    //     ),
-    //   ),
-    // );
   }
 }
