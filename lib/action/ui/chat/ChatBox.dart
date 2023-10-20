@@ -2,7 +2,7 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 
 class ChatBox extends StatefulWidget {
-  final AnimatedText message;
+  AnimatedText message = TyperAnimatedText("...");
   final VoidCallback onTap;
 
   ChatBox({required this.message, required this.onTap});
