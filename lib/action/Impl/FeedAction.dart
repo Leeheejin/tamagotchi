@@ -14,18 +14,36 @@ class FeedAction extends AbstractAction {
 }
 
 class _FeedActionState extends State<FeedAction> {
+  bool animationDone = false;
   int currentStep = 0;
   final List<String> messages = [
     "",
     "Step 1: See the red box.",
     "Step 2: Now it turns green.",
     "Step 3: Finally, blue.",
+    ""
   ];
 
-  void _resetChatBox() {
+  @override
+  void initState() {
     TamagotchiMap().actionNotifier(runtimeType);
+    super.initState();
+  }
+
+  void _updateStep() {
     setState(() {
-      currentStep = 0;
+      print(currentStep);
+      if (animationDone && currentStep < messages.length - 1) {
+        currentStep++;
+        animationDone = false;
+      }
+    });
+  }
+
+  void _onAnimationDone() {
+    setState(() {
+      print("done");
+      animationDone = true;
     });
   }
 
@@ -44,14 +62,20 @@ class _FeedActionState extends State<FeedAction> {
           SizedBox(
               width: 0.1,
               height: 0.1,
-              child: GameWidget(game: FeedActionUI(context: context, currentStep: currentStep))
+              child: GameWidget(
+                  game: FeedActionUI(
+                      context: context,
+                      currentStep: currentStep,
+                      onCompleted: _onAnimationDone
+                  ))
           ),
           Positioned(
             bottom: MediaQuery.of(context).size.height * 0.1,
             left: MediaQuery.of(context).size.width * 0.1,
             child: ChatBox(
                 messages: messages,
-                onFinished: _resetChatBox,
+                onTap: _updateStep,
+                currentMessageIndex: currentStep,
               ),
             ),
         ],
