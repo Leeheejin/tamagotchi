@@ -73,7 +73,7 @@ class _GameControllerState extends State<GameController> with AutomaticKeepAlive
               visible: true,
               child: ClipOval(
               child: SizedBox.fromSize(
-                size: Size.fromRadius(48),
+                size: Size.fromRadius(MediaQuery.of(context).size.width * 0.1),
                 child: EventHandleProvider.instance.currentEvent.eventImage,)
               )
             ),

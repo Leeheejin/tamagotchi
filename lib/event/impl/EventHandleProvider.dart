@@ -36,6 +36,7 @@ class EventHandleProvider {
 
   void inactiveEvent() {
     _eventTimer.cancel();
+    setCurrentEvent(_eventGenerator.getDefaultEvent());
     _isEventActive = false;
   }
 
