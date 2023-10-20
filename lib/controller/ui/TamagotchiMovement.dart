@@ -10,8 +10,8 @@ import 'package:logger/logger.dart';
 
 class TamagotchiMovement extends FlameGame {
   final Random _random = Random();
-  Vector2 _currentPosition = Vector2(45, 150);
-  Vector2 _nextPosition = Vector2(45, 150);
+  Vector2 _currentPosition = Vector2(45, 450);
+  Vector2 _nextPosition = Vector2(45, 450);
   final spriteSize = Vector2(120.0, 120.0); //48
   MovingDirection _direction = MovingDirection.Down;
   late EffectController effectController;
@@ -126,11 +126,13 @@ class TamagotchiMovement extends FlameGame {
       _direction = MovingDirection.Left;
     }
 
-    if (point + addition <= 180 && point + addition >= -80) {
+    if (point + addition > 180) {
+      return 180;
+    } else if (point + addition < -80) {
+      return -80;
+    } else {
       return point + addition;
     }
-
-    return point;
   }
 
   double checkYBound(double point, double addition) {
@@ -141,11 +143,13 @@ class TamagotchiMovement extends FlameGame {
       _direction = MovingDirection.Up;
     }
 
-    if (point + addition <= 240 && point + addition >= 0) {
+    if (point + addition > 500) {
+      return 500;
+    } else if (point + addition <= 0) {
+      return 0;
+    } else {
       return point + addition;
     }
-
-    return point;
   }
 }
 
