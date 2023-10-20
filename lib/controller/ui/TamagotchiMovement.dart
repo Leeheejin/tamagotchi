@@ -9,7 +9,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:logger/logger.dart';
 
 class TamagotchiMovement extends FlameGame {
-  final Random _random = Random();
   Vector2 _currentPosition = Vector2(45, 450);
   Vector2 _nextPosition = Vector2(45, 450);
   final spriteSize = Vector2(120.0, 120.0); //48
@@ -93,7 +92,7 @@ class TamagotchiMovement extends FlameGame {
 
   Vector2 getRandomNextPosition() {
 
-    bool direction = _random.nextBool();
+    bool direction = Random().nextBool();
     double x = _currentPosition.x;
     double y = _currentPosition.y;
 
@@ -107,13 +106,13 @@ class TamagotchiMovement extends FlameGame {
   }
 
   double getRandomPosition() {
-    bool positive = _random.nextBool();
+    bool positive = Random().nextBool();
 
     if (positive) {
-      return 25 + _random.nextDouble() * 75 * -1;
+      return 25 + Random().nextDouble() * 75;
     }
 
-    return 25 + _random.nextDouble() * 75;
+    return 25 + Random().nextDouble() * 75 * -1;
   }
 
   //TODO screen size refactor need.
