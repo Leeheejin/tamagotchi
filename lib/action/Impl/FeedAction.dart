@@ -1,11 +1,12 @@
 
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:tamahaem/action/AbstractAction.dart';
 
 import '../../utils/TamagotchiMap.dart';
 import '../ui/FeedActionUI.dart';
-import '../ui/chat/DamagochiChatBox.dart';
+import '../ui/chat/ChatBox.dart';
 
 class FeedAction extends AbstractAction {
 
@@ -16,11 +17,11 @@ class FeedAction extends AbstractAction {
 class _FeedActionState extends State<FeedAction> {
   bool animationDone = false;
   int currentStep = 0;
-  final List<String> messages = [
-    "햄쥐는 배가 고프다...",
-    "맛있는 사과를 받았다!",
-    "햄쥐는 의지가 차오른다.",
-    ""
+  final List<AnimatedText> messages = [
+    TyperAnimatedText("햄쥐는 배가 고프다..."),
+    TyperAnimatedText("맛있는 사과를 받았다!"),
+    TyperAnimatedText("햄쥐는 의지가 차오른다."),
+    TyperAnimatedText("")
   ];
 
   @override
@@ -30,7 +31,6 @@ class _FeedActionState extends State<FeedAction> {
   }
 
   void _updateStep() {
-    print(currentStep);
     if (animationDone && currentStep < messages.length - 1) {
       setState(() {
         currentStep++;
@@ -40,7 +40,6 @@ class _FeedActionState extends State<FeedAction> {
   }
 
   void _onAnimationDone() {
-    print("done");
     if (!animationDone) {
         animationDone = true;
     }
@@ -72,9 +71,8 @@ class _FeedActionState extends State<FeedAction> {
             bottom: MediaQuery.of(context).size.height * 0.1,
             left: MediaQuery.of(context).size.width * 0.1,
             child: ChatBox(
-                messages: messages,
+                message: messages[currentStep],
                 onTap: _updateStep,
-                currentMessageIndex: currentStep,
               ),
             ),
         ],
