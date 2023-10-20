@@ -5,7 +5,7 @@ import 'package:tamahaem/event/AbstractTamagotchiEvent.dart';
 class DefaultEvent extends AbstractTamagotchiEvent {
 
   Type actionKey = DefaultAction().runtimeType;
-  Icon eventIcon = Icon(Icons.add_circle_outline, size: 75);
+  Image eventImage = Image.asset("assets/images/events/happy.png");
 
   @override
   void doAct() {

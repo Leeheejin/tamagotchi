@@ -6,7 +6,7 @@ import 'package:tamahaem/event/impl/EventHandleProvider.dart';
 
 abstract class AbstractTamagotchiEvent {
   Tamagotchi tamagotchi = TamagotchiProvider.instance.tamagotchi;
-  late Icon eventIcon;
+  late Image eventImage;
   late Type actionKey;
   Logger logger = Logger();
 

@@ -5,7 +5,7 @@ import 'package:tamahaem/event/AbstractTamagotchiEvent.dart';
 class ThirstyEvent extends AbstractTamagotchiEvent {
 
   Type actionKey = WaterAction().runtimeType;
-  Icon eventIcon = Icon(Icons.water_drop_outlined, size: 75);
+  Image eventImage = Image.asset("assets/images/events/thirsty.png");
 
   @override
   void doAct() {

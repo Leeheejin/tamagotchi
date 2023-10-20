@@ -5,7 +5,7 @@ import 'package:tamahaem/event/AbstractTamagotchiEvent.dart';
 class SickEvent extends AbstractTamagotchiEvent {
 
   Type actionKey = CareAction().runtimeType;
-  Icon eventIcon = Icon(Icons.sick, size: 75);
+  Image eventImage = Image.asset("assets/images/events/sick.png");
 
   @override
   void doAct() {

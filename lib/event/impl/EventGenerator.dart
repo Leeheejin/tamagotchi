@@ -1,9 +1,9 @@
 import 'dart:math';
 
 import 'package:tamahaem/event/AbstractTamagotchiEvent.dart';
-import 'package:tamahaem/event/impl/FoundToyEvent.dart';
+import 'package:tamahaem/event/impl/BoredomEvent.dart';
 import 'package:tamahaem/event/impl/HungryEvent.dart';
-import 'package:tamahaem/event/impl/PoopEvent.dart';
+import 'package:tamahaem/event/impl/DirtyEvent.dart';
 import 'package:tamahaem/event/impl/SickEvent.dart';
 import 'package:tamahaem/event/impl/ThirstyEvent.dart';
 
@@ -14,8 +14,8 @@ class EventGenerator {
     SickEvent(),
     HungryEvent(),
     ThirstyEvent(),
-    PoopEvent(),
-    FoundToyEvent(),
+    DirtyEvent(),
+    BoredomEvent(),
   ];
 
   AbstractTamagotchiEvent getRandomEvent() {

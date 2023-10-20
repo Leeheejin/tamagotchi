@@ -76,6 +76,7 @@ flutter:
     - assets/images/icon/
     - assets/images/item/
     - assets/images/item/food/
+    - assets/images/events/
 
 
   # To add assets to your application, add an assets section, like this:

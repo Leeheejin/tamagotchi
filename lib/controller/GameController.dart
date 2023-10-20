@@ -67,15 +67,15 @@ class _GameControllerState extends State<GameController> with AutomaticKeepAlive
               child: GameWidget(game: TamagotchiMovement())
           ),
           Positioned(
-            top: MediaQuery.of(context).size.height * 0.2,
+            top: MediaQuery.of(context).size.height * 0.25,
             left: MediaQuery.of(context).size.width * 0.05,
             child: Visibility(
-              visible: true, //EventMarkerProvider().isEventActive,
-              child: SizedBox(
-                width: MediaQuery.of(context).size.width * 0.1,
-                height: MediaQuery.of(context).size.height * 0.1,
-                child: EventHandleProvider.instance.currentEvent.eventIcon,
-              ),
+              visible: true,
+              child: ClipOval(
+              child: SizedBox.fromSize(
+                size: Size.fromRadius(48),
+                child: EventHandleProvider.instance.currentEvent.eventImage,)
+              )
             ),
           ),
           Positioned(

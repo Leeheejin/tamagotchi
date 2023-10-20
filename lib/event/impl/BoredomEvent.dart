@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:tamahaem/action/Impl/PlayAction.dart';
 import 'package:tamahaem/event/AbstractTamagotchiEvent.dart';
 
-class FoundToyEvent extends AbstractTamagotchiEvent {
+class BoredomEvent extends AbstractTamagotchiEvent {
 
   Type actionKey = PlayAction().runtimeType;
-  Icon eventIcon = Icon(Icons.smart_toy_outlined, size: 75);
+  Image eventImage = Image.asset("assets/images/events/boredom.png");
 
   @override
   void doAct() {

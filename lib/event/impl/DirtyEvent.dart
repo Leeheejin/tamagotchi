@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:tamahaem/action/Impl/CleanAction.dart';
 import 'package:tamahaem/event/AbstractTamagotchiEvent.dart';
 
-class PoopEvent extends AbstractTamagotchiEvent {
+class DirtyEvent extends AbstractTamagotchiEvent {
 
   Type actionKey = CleanAction().runtimeType;
-  Icon eventIcon = Icon(Icons.mood_bad_sharp, size: 75);
+  Image eventImage = Image.asset("assets/images/events/dirty.png");
 
   @override
   void doAct() {
