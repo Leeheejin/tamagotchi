@@ -19,7 +19,7 @@ class _ActionDialogState extends State<ActionDialog> {
   Widget _background(BuildContext context) {
 
     return const Image(
-      image: AssetImage("assets/images/background/background.png"),
+      image: AssetImage("assets/images/background/dialogBackground.png"),
       alignment: Alignment.center,
       height: double.infinity,
       width: double.infinity,
