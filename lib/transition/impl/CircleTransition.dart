@@ -33,7 +33,8 @@ class CircleClipper extends CustomClipper<Rect> {
 
   @override
   Rect getClip(Size size) {
-    return Rect.fromCircle(center: Offset(size.width / 2, size.height / 2), radius: radius);
+    return Rect.fromCircle(
+        center: Offset(size.width / 2, size.height / 2), radius: radius);
   }
 
   @override

@@ -1,8 +1,6 @@
-
 import 'package:flutter/material.dart';
 import 'package:tamahaem/action/AbstractAction.dart';
 import 'package:tamahaem/action/ActionHandler.dart';
-
 import 'package:tamahaem/transition/AnimationPageRoute.dart';
 
 class ActionButton extends StatefulWidget {
@@ -34,18 +32,16 @@ class _ActionButtonState extends State<ActionButton> {
             pressed = false;
           });
         },
-
         onTapCancel: () {
           setState(() {
             pressed = false;
           });
         },
-
         onTap: () {
           Navigator.of(context).pop(true);
-          Navigator.of(context).push(AnimationPageRoute(widget: ActionHandler().getAction(widget.index).doAction()));
+          Navigator.of(context).push(AnimationPageRoute(
+              widget: ActionHandler().getAction(widget.index).doAction()));
         },
-
         child: Stack(
           children: [
             Container(
@@ -53,24 +49,31 @@ class _ActionButtonState extends State<ActionButton> {
                 height: 75,
                 decoration: BoxDecoration(
                     image: DecorationImage(
-                        image: pressed ? AssetImage("assets/images/button/${widget.index}_pressed.png")
-                            : AssetImage("assets/images/button/${widget.index}_default.png"),
-                        fit:BoxFit.cover
-                    )
-                ),
-                child: null
-            ),
+                        image: pressed
+                            ? AssetImage(
+                                "assets/images/button/${widget.index}_pressed.png")
+                            : AssetImage(
+                                "assets/images/button/${widget.index}_default.png"),
+                        fit: BoxFit.cover)),
+                child: null),
             Positioned(
               top: 15,
               left: 15,
               bottom: 25,
               right: 15,
               //TODO: 버튼 클릭에 따라 아이콘이 움직이던가, 아니면 버튼이랑 아이콘이 한쌍이어야 함.
-              child: pressed ? Image.asset("assets/images/icon/tile00${widget.index}.png", fit: BoxFit.fill, color: Colors.black.withOpacity(0.1),)
-                  : Image.asset("assets/images/icon/tile00${widget.index}.png", fit: BoxFit.fill,),
+              child: pressed
+                  ? Image.asset(
+                      "assets/images/icon/tile00${widget.index}.png",
+                      fit: BoxFit.fill,
+                      color: Colors.black.withOpacity(0.1),
+                    )
+                  : Image.asset(
+                      "assets/images/icon/tile00${widget.index}.png",
+                      fit: BoxFit.fill,
+                    ),
             )
           ],
-        )
-    );
+        ));
   }
 }

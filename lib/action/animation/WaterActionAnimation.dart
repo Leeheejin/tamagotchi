@@ -21,7 +21,6 @@ class WaterActionUI extends FlameGame {
 
   @override
   Future<void> onLoad() async {
-
     spriteSheet = SpriteSheet(
       image: await images.load('character/test.png'),
       srcSize: Vector2(120.0, 120.0),
@@ -42,65 +41,46 @@ class WaterActionUI extends FlameGame {
       size: spriteSize,
     );
 
-
     effectController = EffectController(
-      duration: 1,
-      reverseDuration: 0,
-      infinite: false,
-      curve: Curves.linear
-    );
+        duration: 1, reverseDuration: 0, infinite: false, curve: Curves.linear);
 
     effect = MoveEffect.to(
-      Vector2(_nextPosition.x, _nextPosition.y),
-      effectController,
-      onComplete: () => { arriveAnimation() }
-    );
+        Vector2(_nextPosition.x, _nextPosition.y), effectController,
+        onComplete: () => {arriveAnimation()});
 
     add(
-      spriteAnimationComponent
-        ..add(
-            effect
-        ),
+      spriteAnimationComponent..add(effect),
     );
   }
 
   void arriveAnimation() {
-
     spriteAnimationComponent.position = _nextPosition;
 
     spriteAnimationComponent.remove(effect);
 
-    SpriteAnimation NewAnimation = spriteSheet.createAnimation(row: 0, stepTime: 0.1, to: 1);
+    SpriteAnimation NewAnimation =
+        spriteSheet.createAnimation(row: 0, stepTime: 0.1, to: 1);
 
     spriteAnimationComponent.animation = NewAnimation;
 
-
     effectController = EffectController(
-        duration: 3,
-        reverseDuration: 0,
-        infinite: false,
-        curve: Curves.linear
-    );
+        duration: 3, reverseDuration: 0, infinite: false, curve: Curves.linear);
 
     effect = MoveEffect.to(
-        Vector2(_nextPosition.x, _nextPosition.y),
-        effectController,
-        onComplete: () => { foodAnimation() }
-    );
+        Vector2(_nextPosition.x, _nextPosition.y), effectController,
+        onComplete: () => {foodAnimation()});
 
-    spriteAnimationComponent
-        .add(
-        effect
-    );
+    spriteAnimationComponent.add(effect);
   }
 
   void foodAnimation() async {
-
     final spriteSize = Vector2(16.0, 16.0);
 
-    SpriteAnimation animation2 = spriteSheet2.createAnimation(row: 0, stepTime: 0.1, to: 1);
+    SpriteAnimation animation2 =
+        spriteSheet2.createAnimation(row: 0, stepTime: 0.1, to: 1);
 
-    SpriteAnimationComponent spriteAnimationComponent2 = SpriteAnimationComponent(
+    SpriteAnimationComponent spriteAnimationComponent2 =
+        SpriteAnimationComponent(
       animation: animation2,
       scale: Vector2(4, 4), // 8
       position: Vector2(60, -100),
@@ -108,26 +88,16 @@ class WaterActionUI extends FlameGame {
     );
 
     EffectController effectController2 = EffectController(
-        duration: 3,
-        reverseDuration: 0,
-        infinite: false,
-        curve: Curves.linear
-    );
+        duration: 3, reverseDuration: 0, infinite: false, curve: Curves.linear);
 
     Effect effect2 = MoveEffect.to(
-        Vector2(_nextPosition.x, _nextPosition.y),
-        effectController2,
-      onComplete: () {
-        spriteAnimationComponent2.position = _nextPosition;
-      }
-    );
+        Vector2(_nextPosition.x, _nextPosition.y), effectController2,
+        onComplete: () {
+      spriteAnimationComponent2.position = _nextPosition;
+    });
 
     add(
-      spriteAnimationComponent2
-        ..add(
-            effect2
-        ),
+      spriteAnimationComponent2..add(effect2),
     );
-
   }
 }

@@ -3,7 +3,6 @@ import 'package:tamahaem/action/Impl/DefaultAction.dart';
 import 'package:tamahaem/event/AbstractTamagotchiEvent.dart';
 
 class DefaultEvent extends AbstractTamagotchiEvent {
-
   Type actionKey = DefaultAction().runtimeType;
   AssetImage eventImage = AssetImage("assets/images/events/happy.png");
 
@@ -11,5 +10,4 @@ class DefaultEvent extends AbstractTamagotchiEvent {
   void eventEffect() {
     // do nothing. is default.
   }
-
 }

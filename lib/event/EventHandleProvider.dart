@@ -10,7 +10,8 @@ import '../utils/Constants.dart';
 import 'EventGenerator.dart';
 
 class EventHandlerProvider extends ChangeNotifier {
-  static final EventHandlerProvider _instance = EventHandlerProvider._internal();
+  static final EventHandlerProvider _instance =
+      EventHandlerProvider._internal();
 
   Tamagotchi _tamagotchi = Tamagotchi();
   final EventGenerator _eventGenerator = EventGenerator();
@@ -63,10 +64,10 @@ class EventHandlerProvider extends ChangeNotifier {
   AbstractTamagotchiEvent get currentEvent => _currentEvent;
 
   void startEvent() {
-
     setEventActive();
 
-    _eventTimer = Timer(const Duration(minutes: DAMAGOCHI_EVENT_TIME_MINUTE), () {
+    _eventTimer =
+        Timer(const Duration(minutes: DAMAGOCHI_EVENT_TIME_MINUTE), () {
       if (_eventTimer.isActive) {
         _tamagotchi.decreaseFriendly();
         logger.v("event failed ${_tamagotchi.friendlyValue}");

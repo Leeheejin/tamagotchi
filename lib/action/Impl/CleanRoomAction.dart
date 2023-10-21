@@ -1,9 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:tamahaem/action/AbstractAction.dart';
 
 class CleanRoomAction extends AbstractAction {
-
   @override
   _CleanActionState createState() => _CleanActionState();
 

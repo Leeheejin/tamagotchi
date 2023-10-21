@@ -32,11 +32,10 @@ class TamagotchiMovement extends FlameGame {
 
   @override
   Future<void> onLoad() async {
-
     print("${size.x} ${size.y}");
 
-     _currentPosition = Vector2(0, 0);
-     _nextPosition = _currentPosition;
+    _currentPosition = Vector2(0, 0);
+    _nextPosition = _currentPosition;
 
     xMin = -100;
     xMax = 100;
@@ -52,7 +51,8 @@ class TamagotchiMovement extends FlameGame {
     );
 
     // to는 불러오는 이미지 row= 0, to 4은 아래직진 1,4 위직진, 2,4 좌직진, 3,4 우직진
-    animation = spriteSheet.createAnimation(row: _direction.index, stepTime: 0.1, to: _direction.index + 1);
+    animation = spriteSheet.createAnimation(
+        row: _direction.index, stepTime: 0.1, to: _direction.index + 1);
 
     spriteAnimationComponent = SpriteAnimationComponent(
       animation: animation,
@@ -61,56 +61,39 @@ class TamagotchiMovement extends FlameGame {
       size: _spriteSize,
     );
 
-
     effectController = EffectController(
-      duration: 1,
-      reverseDuration: 0,
-      infinite: false,
-      curve: Curves.linear
-    );
+        duration: 1, reverseDuration: 0, infinite: false, curve: Curves.linear);
 
     effect = MoveEffect.to(
-      Vector2(_nextPosition.x, _nextPosition.y),
-      effectController,
-      onComplete: () => { updatePosition() }
-    );
+        Vector2(_nextPosition.x, _nextPosition.y), effectController,
+        onComplete: () => {updatePosition()});
 
     add(
-      spriteAnimationComponent
-        ..add(
-            effect
-        ),
+      spriteAnimationComponent..add(effect),
     );
   }
 
   void updatePosition() {
-
     _currentPosition = _nextPosition;
     _nextPosition = getRandomNextPosition();
 
     spriteAnimationComponent.remove(effect);
 
-    SpriteAnimation NewAnimation = spriteSheet.createAnimation(row: _direction.index, stepTime: 0.1, to: 3);
+    SpriteAnimation NewAnimation = spriteSheet.createAnimation(
+        row: _direction.index, stepTime: 0.1, to: 3);
 
     spriteAnimationComponent.animation = NewAnimation;
     spriteAnimationComponent.position = _currentPosition;
 
     effectController = EffectController(
-        duration: 3,
-        reverseDuration: 0,
-        infinite: false,
-        curve: Curves.linear
-    );
+        duration: 3, reverseDuration: 0, infinite: false, curve: Curves.linear);
 
     effect = MoveEffect.to(
-        Vector2(_nextPosition.x, _nextPosition.y),
-        effectController,
-        onComplete: () => { updatePosition() }
-    );
+        Vector2(_nextPosition.x, _nextPosition.y), effectController,
+        onComplete: () => {updatePosition()});
 
     spriteAnimationComponent.add(effect);
   }
-
 
   Vector2 getRandomNextPosition() {
     double x = _currentPosition.x;
@@ -129,7 +112,7 @@ class TamagotchiMovement extends FlameGame {
     bool moveDown = Random().nextDouble() < bottomBias / (topBias + bottomBias);
 
     // If close to an edge, have a stronger bias to move away from that edge
-    double edgeBuffer = 50;  // Adjust as needed
+    double edgeBuffer = 50; // Adjust as needed
 
     if (x < xMin + edgeBuffer) moveRight = true;
     if (x > xMax - edgeBuffer) moveRight = false;
@@ -192,7 +175,6 @@ class TamagotchiMovement extends FlameGame {
   }
 
   double checkYBound(double point, double addition) {
-
     if (point + addition > yMax) {
       return yMax;
     } else if (point + addition <= yMin) {
@@ -205,7 +187,7 @@ class TamagotchiMovement extends FlameGame {
 
 enum MovingDirection {
   Down, // 0
-  Up,  // 1
+  Up, // 1
   Left, // 2
   Right // 3
 }

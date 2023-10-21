@@ -4,7 +4,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 enum TamagotchiStage { EGG, BABY, TEEN, ADULT }
 
 class Tamagotchi extends ChangeNotifier {
-
   static final Tamagotchi _instance = Tamagotchi._internal();
 
   factory Tamagotchi() {
@@ -12,7 +11,7 @@ class Tamagotchi extends ChangeNotifier {
   }
 
   Tamagotchi._internal() {
-   load();
+    load();
   }
 
   TamagotchiStage _currentStage = TamagotchiStage.EGG;
@@ -23,11 +22,17 @@ class Tamagotchi extends ChangeNotifier {
   int _happiness = 50;
 
   int get hunger => _hunger;
+
   int get thirst => _thirst;
+
   int get happiness => _happiness;
+
   double get friendlyValue => _friendlyValue;
+
   int get stageIndex => _currentStage.index;
+
   TamagotchiStage get currentState => _currentStage;
+
   int get age => _age;
 
   Future<void> save() async {
@@ -74,7 +79,6 @@ class Tamagotchi extends ChangeNotifier {
   //       return "lib/assets/images/character/tamagotchi2.png";
   //   }
   // }
-
 
   void setFriendly(double friendlyValue) {
     if (friendlyValue < 0) {

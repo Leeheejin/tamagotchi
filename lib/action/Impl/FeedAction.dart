@@ -1,9 +1,9 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
-import 'package:tamahaem/controller/ui/chat/ChatBox.dart';
 import 'package:tamahaem/action/AbstractAction.dart';
 import 'package:tamahaem/action/animation/FeedActionAnimation.dart';
+import 'package:tamahaem/controller/ui/chat/ChatBox.dart';
 
 class FeedAction extends AbstractAction {
   @override
@@ -56,18 +56,13 @@ class _FeedActionState extends State<FeedAction> {
         Positioned(
             child: Center(
                 child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height,
-                  child: GameWidget(
-                      game: FeedActionUI(
-                          context: context,
-                          currentStep: currentStep,
-                          onCompleted: _onAnimationDone
-                      )
-                  )
-                )
-            )
-        ),
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height,
+                    child: GameWidget(
+                        game: FeedActionUI(
+                            context: context,
+                            currentStep: currentStep,
+                            onCompleted: _onAnimationDone))))),
         Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.end,
@@ -79,10 +74,8 @@ class _FeedActionState extends State<FeedAction> {
                       child: ChatBox(
                         message: messages[currentStep],
                         onTap: _updateStep,
-                      ))
-              )
-            ]
-        )
+                      )))
+            ])
       ]),
     );
   }

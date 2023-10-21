@@ -1,9 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:tamahaem/action/AbstractAction.dart';
 
 class CareAction extends AbstractAction {
-
   @override
   _CareActionState createState() => _CareActionState();
 

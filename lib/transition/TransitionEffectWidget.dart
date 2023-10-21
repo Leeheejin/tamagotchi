@@ -42,12 +42,11 @@ class _TransitionEffectWidgetState extends State<TransitionEffectWidget> {
               builder: (context, value, child) {
                 if (useCircle) {
                   return CircleTransition(animation: widget.animation);
+                } else {
+                  return BlindsTransition(
+                      animation: widget.animation, isHorizontal: isHorizontal);
                 }
-                else {
-                  return BlindsTransition(animation: widget.animation, isHorizontal: isHorizontal);
-                }
-              }
-          )
+              })
         ],
       ),
     );

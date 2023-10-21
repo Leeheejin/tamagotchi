@@ -7,8 +7,12 @@ class AnimationPageRoute extends PageRouteBuilder {
 
   AnimationPageRoute({required this.widget})
       : super(
-    pageBuilder: (context, animation, secondaryAnimation) => widget,
-    transitionsBuilder: (context, animation, secondaryAnimation, child) => TransitionEffectWidget(key: const ValueKey('someUniqueValue'), animation: animation, child: child),
-    transitionDuration: const Duration(seconds: 1),
-  );
+          pageBuilder: (context, animation, secondaryAnimation) => widget,
+          transitionsBuilder: (context, animation, secondaryAnimation, child) =>
+              TransitionEffectWidget(
+                  key: const ValueKey('someUniqueValue'),
+                  animation: animation,
+                  child: child),
+          transitionDuration: const Duration(seconds: 1),
+        );
 }

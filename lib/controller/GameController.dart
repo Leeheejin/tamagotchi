@@ -1,19 +1,16 @@
-import 'dart:ffi';
-
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_shake_animated/flutter_shake_animated.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 import 'package:tamahaem/controller/TamagotchiCounterController.dart';
-import 'package:tamahaem/controller/ui/menu/ActionDialog.dart';
 import 'package:tamahaem/controller/ui/FriendlyGage.dart';
 import 'package:tamahaem/controller/ui/TamagotchiMovement.dart';
 import 'package:tamahaem/controller/ui/TamagotchiStatus.dart';
+import 'package:tamahaem/controller/ui/menu/ActionDialog.dart';
 
 import '../domain/Tamagotchi.dart';
 import '../event/EventHandleProvider.dart';
-import '../utils/Constants.dart';
 import '../utils/SoundPlayer.dart';
 
 class GameController extends StatefulWidget {
@@ -51,35 +48,33 @@ class _GameControllerState extends State<GameController>
       body: Stack(
         children: <Widget>[
           Positioned(
-            child: SizedBox(
-                width: double.infinity,
-                height: double.infinity,
-                child: Image.asset("assets/images/background/homeBackground.png", fit: BoxFit.cover,)
-            )
-          ),
+              child: SizedBox(
+                  width: double.infinity,
+                  height: double.infinity,
+                  child: Image.asset(
+                    "assets/images/background/homeBackground.png",
+                    fit: BoxFit.cover,
+                  ))),
           Positioned(
-            top: MediaQuery.of(context).size.height * 0.5,
+              top: MediaQuery.of(context).size.height * 0.5,
               child: Center(
-                child: Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height * 0.5,
-                    child: GameWidget(
-                        game: TamagotchiMovement(),
-                    ),
-                )
-              )
-          ),
+                  child: Container(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height * 0.5,
+                child: GameWidget(
+                  game: TamagotchiMovement(),
+                ),
+              ))),
           Positioned(
             top: MediaQuery.of(context).size.height * 0.25,
             left: MediaQuery.of(context).size.width * 0.05,
             child: ChangeNotifierProvider.value(
               value: EventHandlerProvider(),
-              child: Consumer<EventHandlerProvider> (
+              child: Consumer<EventHandlerProvider>(
                 builder: (context, eventHandlerProvider, child) {
                   return Visibility(
-                      visible: eventHandlerProvider.isEventActive,
-                      child:
-                      ShakeWidget(
+                    visible: eventHandlerProvider.isEventActive,
+                    child: ShakeWidget(
                         duration: Duration(seconds: 2),
                         shakeConstant: ShakeHorizontalConstant2(),
                         autoPlay: true,
@@ -88,11 +83,11 @@ class _GameControllerState extends State<GameController>
                           radius: MediaQuery.of(context).size.height * 0.045,
                           backgroundColor: Colors.white,
                           child: CircleAvatar(
-                            backgroundImage: eventHandlerProvider.currentEvent.eventImage,
+                            backgroundImage:
+                                eventHandlerProvider.currentEvent.eventImage,
                             radius: MediaQuery.of(context).size.height * 0.035,
                           ),
-                        )
-                      ),
+                        )),
                   );
                 },
               ),
@@ -103,26 +98,22 @@ class _GameControllerState extends State<GameController>
               child: Center(
                 child: ChangeNotifierProvider.value(
                     value: Tamagotchi(),
-                    child: Consumer<Tamagotchi> (
+                    child: Consumer<Tamagotchi>(
                         builder: (context, tamagotchi, child) {
-                          return Container(
-                            width: MediaQuery.of(context).size.width,
-                            height: MediaQuery.of(context).size.height * 0.1,
-                            child: FriendlyGage(
-                              key: ValueKey(tamagotchi.friendlyValue),
-                              friendly: tamagotchi.friendlyValue,
-                            ),
-                          );
-                        }
-                    )
-                ),
-              )
-          ),
+                      return Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.height * 0.1,
+                        child: FriendlyGage(
+                          key: ValueKey(tamagotchi.friendlyValue),
+                          friendly: tamagotchi.friendlyValue,
+                        ),
+                      );
+                    })),
+              )),
           Positioned(
               top: MediaQuery.of(context).size.height * 0.7,
               right: MediaQuery.of(context).size.width * 0.05,
-              child: TamagotchiStatus()
-          ),
+              child: TamagotchiStatus()),
           // Positioned(
           //   bottom: MediaQuery.of(context).size.height * 0.1,
           //   left: MediaQuery.of(context).size.width * 0.1,

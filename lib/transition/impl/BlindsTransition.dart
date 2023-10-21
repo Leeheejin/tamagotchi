@@ -29,9 +29,7 @@ class BlindsTransition extends StatelessWidget {
             double size = isHorizontal
                 ? blindSize * (1.0 - staggeredAnimation.value)
                 : constraints.maxHeight;
-            double position = isHorizontal
-                ? blindSize * index
-                : 0.0;
+            double position = isHorizontal ? blindSize * index : 0.0;
 
             if (!isHorizontal) {
               size = blindSize * (1.0 - staggeredAnimation.value);

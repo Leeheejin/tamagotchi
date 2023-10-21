@@ -12,13 +12,11 @@ class ChatBox extends StatefulWidget {
 }
 
 class _ChatBoxState extends State<ChatBox> {
-
   void _handleTap() {
     widget.onTap();
   }
 
   Widget _background(BuildContext context) {
-
     return const Image(
       image: AssetImage("assets/images/background/chatBoxBackground.png"),
       alignment: Alignment.center,
@@ -33,24 +31,20 @@ class _ChatBoxState extends State<ChatBox> {
     return GestureDetector(
         onTap: _handleTap,
         child: Stack(
-            children: [
-              SizedBox(
-                  width: double.infinity,
-                  height: double.infinity,
-                  child: _background(context)
-              ),
-              Positioned(
-                  top: MediaQuery.of(context).size.height * 0.1,
-                  left: MediaQuery.of(context).size.height * 0.05,
-                  child: AnimatedTextKit(
-                      key: ValueKey(widget.message),
-                      animatedTexts: [widget.message],
-                      isRepeatingAnimation: false,
-                      displayFullTextOnTap: true
-                  )
-              )
-            ],
-        )
-    );
+          children: [
+            SizedBox(
+                width: double.infinity,
+                height: double.infinity,
+                child: _background(context)),
+            Positioned(
+                top: MediaQuery.of(context).size.height * 0.1,
+                left: MediaQuery.of(context).size.height * 0.05,
+                child: AnimatedTextKit(
+                    key: ValueKey(widget.message),
+                    animatedTexts: [widget.message],
+                    isRepeatingAnimation: false,
+                    displayFullTextOnTap: true))
+          ],
+        ));
   }
 }

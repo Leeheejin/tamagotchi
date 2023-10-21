@@ -1,7 +1,6 @@
 import 'package:audioplayers/audioplayers.dart';
 
 class SoundPlayer {
-
   AudioPlayer audioPlayer = AudioPlayer();
 
   void playFeedSound() {

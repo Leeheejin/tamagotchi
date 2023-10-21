@@ -20,5 +20,3 @@ class FriendlyGage extends StatelessWidget {
     );
   }
 }
-
-
