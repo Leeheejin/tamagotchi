@@ -94,39 +94,37 @@ class TamagotchiMovement extends FlameGame {
     double x = _currentPosition.x;
     double y = _currentPosition.y;
 
-    // Check proximity to edges
-    double leftProximity = (x + 80) / 260;  // Range: [0, 1] where 1 is very close to the left edge
-    double rightProximity = (180 - x) / 260; // Range: [0, 1] where 1 is very close to the right edge
-    // Assuming similar boundaries for y-axis
-    double topProximity = (y + 80) / 260;
-    double bottomProximity = (180 - y) / 260;
+    // Calculate biases based on distance from each edge
+    double leftBias = (x + 80) / 260;
+    double rightBias = (180 - x) / 260;
+    double topBias = (y + 350) / 1000;
+    double bottomBias = (650 - y) / 1000;
 
-    // We'll use these proximities to determine if we should favor x or y movement
-    double xBias = leftProximity + rightProximity;
-    double yBias = topProximity + bottomProximity;
-    bool favorX = Random().nextDouble() < (0.5 + xBias * 0.25);
+    // Decide on x-axis movement
+    bool moveRight = Random().nextDouble() < rightBias / (leftBias + rightBias);
 
-    if (favorX) {
-      if (leftProximity > rightProximity) {
-        x = checkXBound(x, getRandomPosition().abs());
-      } else {
-        x = checkXBound(x, -getRandomPosition().abs());
-      }
-    } else {
-      if (topProximity > bottomProximity) {
-        y = checkYBound(y, getRandomPosition().abs());
-      } else {
-        y = checkYBound(y, -getRandomPosition().abs());
-      }
-    }
+    // Decide on y-axis movement
+    bool moveDown = Random().nextDouble() < bottomBias / (topBias + bottomBias);
 
+    // If close to an edge, have a stronger bias to move away from that edge
+    double edgeBuffer = 50;  // Adjust as needed
+
+    if (x < -80 + edgeBuffer) moveRight = true;
+    if (x > 180 - edgeBuffer) moveRight = false;
+    if (y < 350 + edgeBuffer) moveDown = true;
+    if (y > 650 - edgeBuffer) moveDown = false;
+
+    x = checkXBound(x, getRandomPosition(moveRight));
+    y = checkYBound(y, getRandomPosition(moveDown));
+
+    //logger.v("$x, $y");
     return Vector2(x, y);
   }
 
-  double getRandomPosition() {
+  double getRandomPosition([bool positiveDirection = true]) {
     double magnitude = 50.0 + GaussianDistribution().next() * 25.0;
-    double sign = Random().nextBool() ? 1.0 : -1.0;
-    return magnitude * sign;
+    if (!positiveDirection) magnitude *= -1;
+    return magnitude;
   }
 
   //TODO screen size refactor need.
@@ -156,10 +154,10 @@ class TamagotchiMovement extends FlameGame {
       _direction = MovingDirection.Up;
     }
 
-    if (point + addition > 500) {
-      return 500;
-    } else if (point + addition <= 0) {
-      return 0;
+    if (point + addition > 650) {
+      return 650;
+    } else if (point + addition <= 350) {
+      return 350;
     } else {
       return point + addition;
     }
