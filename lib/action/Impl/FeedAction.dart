@@ -66,7 +66,7 @@ class _FeedActionState extends State<FeedAction> {
                   ))
           ),
           Positioned(
-            bottom: MediaQuery.of(context).size.height * 0.1,
+            top: MediaQuery.of(context).size.height * 0.65,
             left: MediaQuery.of(context).size.width * 0.1,
             child: ChatBox(
                 message: messages[currentStep],

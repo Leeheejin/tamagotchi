@@ -82,7 +82,7 @@ class _GameControllerState extends State<GameController>
               top: MediaQuery.of(context).size.height * 0.1,
               left: MediaQuery.of(context).size.width * 0.25,
               child: SizedBox(
-                  height: 50,
+                  height: MediaQuery.of(context).size.height * 0.1,
                   width: MediaQuery.of(context).size.width * 0.5,
                   child: ChangeNotifierProvider.value(
                       value: Tamagotchi(),
