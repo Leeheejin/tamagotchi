@@ -57,10 +57,18 @@ class _GameControllerState extends State<GameController>
                 child: Image.asset("assets/images/background/homeBackground.png", fit: BoxFit.cover,)
             )
           ),
-          SizedBox(
-              width: 0.1,
-              height: 0.1,
-              child: GameWidget(game: TamagotchiMovement())),
+          Positioned(
+            top: MediaQuery.of(context).size.height * 0.5,
+              child: Center(
+                child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height * 0.5,
+                    child: GameWidget(
+                        game: TamagotchiMovement(),
+                    ),
+                )
+              )
+          ),
           Positioned(
             top: MediaQuery.of(context).size.height * 0.25,
             left: MediaQuery.of(context).size.width * 0.05,
@@ -72,8 +80,8 @@ class _GameControllerState extends State<GameController>
                       visible: eventHandlerProvider.isEventActive,
                       child:
                       ShakeWidget(
-                        duration: Duration(milliseconds: 500),
-                        shakeConstant: ShakeOpacityConstant(),
+                        duration: Duration(seconds: 5),
+                        shakeConstant: ShakeHorizontalConstant2(),
                         autoPlay: true,
                         enableWebMouseHover: false,
                         child: CircleAvatar(

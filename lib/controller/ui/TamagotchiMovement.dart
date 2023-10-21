@@ -9,9 +9,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:logger/logger.dart';
 
 class TamagotchiMovement extends FlameGame {
-  Vector2 _currentPosition = Vector2(45, 450);
-  Vector2 _nextPosition = Vector2(45, 450);
-  final spriteSize = Vector2(120.0, 120.0); //48
+  Vector2 _currentPosition = Vector2(0, 0); //45, 450
+  Vector2 _nextPosition = Vector2(0, 0); // 45, 450
+  late Vector2 _spriteSize = Vector2(120, 120); // 48
   MovingDirection _direction = MovingDirection.Down;
   late EffectController effectController;
   late SpriteAnimation animation;
@@ -21,12 +21,34 @@ class TamagotchiMovement extends FlameGame {
   Logger logger = Logger();
   late Timer timer;
 
+  late double xMin;
+  late double xMax;
+
+  late double yMin;
+  late double yMax;
+
+  @override
+  Color backgroundColor() => const Color(0x00000000);
+
   @override
   Future<void> onLoad() async {
 
+    print("${size.x} ${size.y}");
+
+     _currentPosition = Vector2(0, 0);
+     _nextPosition = _currentPosition;
+
+    xMin = -100;
+    xMax = 100;
+
+    yMin = -100;
+    yMax = 100;
+
+    _spriteSize = Vector2(120, 120);
+
     spriteSheet = SpriteSheet(
       image: await images.load('character/test.png'),
-      srcSize: Vector2(120.0, 120.0),
+      srcSize: Vector2(_spriteSize.x, _spriteSize.y),
     );
 
     // to는 불러오는 이미지 row= 0, to 4은 아래직진 1,4 위직진, 2,4 좌직진, 3,4 우직진
@@ -36,7 +58,7 @@ class TamagotchiMovement extends FlameGame {
       animation: animation,
       scale: Vector2(2, 2), // 8
       position: Vector2(_currentPosition.x, _currentPosition.y),
-      size: spriteSize,
+      size: _spriteSize,
     );
 
 
@@ -95,10 +117,10 @@ class TamagotchiMovement extends FlameGame {
     double y = _currentPosition.y;
 
     // Calculate biases based on distance from each edge
-    double leftBias = (x + 80) / 260;
-    double rightBias = (180 - x) / 260;
-    double topBias = (y + 350) / 1000;
-    double bottomBias = (650 - y) / 1000;
+    double leftBias = (x + xMin) / (xMax + xMin.abs());
+    double rightBias = (xMax - x) / (xMax + xMin.abs());
+    double topBias = (y + yMin) / (yMax + yMin.abs());
+    double bottomBias = (yMax - y) / (yMax + yMin.abs());
 
     // Decide on x-axis movement
     bool moveRight = Random().nextDouble() < rightBias / (leftBias + rightBias);
@@ -109,13 +131,43 @@ class TamagotchiMovement extends FlameGame {
     // If close to an edge, have a stronger bias to move away from that edge
     double edgeBuffer = 50;  // Adjust as needed
 
-    if (x < -80 + edgeBuffer) moveRight = true;
-    if (x > 180 - edgeBuffer) moveRight = false;
-    if (y < 350 + edgeBuffer) moveDown = true;
-    if (y > 650 - edgeBuffer) moveDown = false;
+    if (x < xMin + edgeBuffer) moveRight = true;
+    if (x > xMax - edgeBuffer) moveRight = false;
+    if (y < yMin + edgeBuffer) moveDown = true;
+    if (y > yMax - edgeBuffer) moveDown = false;
 
     x = checkXBound(x, getRandomPosition(moveRight));
     y = checkYBound(y, getRandomPosition(moveDown));
+
+    if (moveRight) {
+      if (moveDown) {
+        if (x > y) {
+          _direction = MovingDirection.Right;
+        } else {
+          _direction = MovingDirection.Down;
+        }
+      } else {
+        if (x > y) {
+          _direction = MovingDirection.Right;
+        } else {
+          _direction = MovingDirection.Up;
+        }
+      }
+    } else {
+      if (moveDown) {
+        if (x > y) {
+          _direction = MovingDirection.Left;
+        } else {
+          _direction = MovingDirection.Down;
+        }
+      } else {
+        if (x > y) {
+          _direction = MovingDirection.Left;
+        } else {
+          _direction = MovingDirection.Up;
+        }
+      }
+    }
 
     //logger.v("$x, $y");
     return Vector2(x, y);
@@ -130,17 +182,10 @@ class TamagotchiMovement extends FlameGame {
   //TODO screen size refactor need.
   //TODO make sub page that limits characters move range.
   double checkXBound(double point, double addition) {
-
-    if (addition > 0) {
-      _direction = MovingDirection.Right;
-    } else {
-      _direction = MovingDirection.Left;
-    }
-
-    if (point + addition > 180) {
-      return 180;
-    } else if (point + addition < -80) {
-      return -80;
+    if (point + addition > xMax) {
+      return xMax;
+    } else if (point + addition < xMin) {
+      return xMin;
     } else {
       return point + addition;
     }
@@ -148,16 +193,10 @@ class TamagotchiMovement extends FlameGame {
 
   double checkYBound(double point, double addition) {
 
-    if (addition > 0) {
-      _direction = MovingDirection.Down;
-    } else {
-      _direction = MovingDirection.Up;
-    }
-
-    if (point + addition > 650) {
-      return 650;
-    } else if (point + addition <= 350) {
-      return 350;
+    if (point + addition > yMax) {
+      return yMax;
+    } else if (point + addition <= yMin) {
+      return yMin;
     } else {
       return point + addition;
     }
