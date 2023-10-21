@@ -1,7 +1,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:tamahaem/action/AbstractAction.dart';
-import 'package:tamahaem/action/TamagotchiMap.dart';
 
 class CareAction extends AbstractAction {
 
@@ -36,7 +35,6 @@ class _CareActionState extends State<CareAction> {
         child: ElevatedButton(
           child: const Text("돌아가기"),
           onPressed: () {
-            TamagotchiActionHandler().actionNotifier(runtimeType);
             Navigator.pop(context);
           },
         ),

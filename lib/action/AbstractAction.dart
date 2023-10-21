@@ -9,7 +9,7 @@ abstract class AbstractAction extends StatefulWidget {
   void action();
 }
 
-extension ActionHandler on AbstractAction {
+extension ActionExecutor on AbstractAction {
   AbstractAction doAction() {
     action();
     return this;

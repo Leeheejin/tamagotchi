@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tamahaem/action/AbstractAction.dart';
-import 'package:tamahaem/action/TamagotchiMap.dart';
+import 'package:tamahaem/action/ActionHandler.dart';
 
 class PlayAction extends AbstractAction {
 
@@ -35,7 +35,6 @@ class _PlayActionState extends State<PlayAction> {
         child: ElevatedButton(
           child: const Text("돌아가기"),
           onPressed: () {
-            TamagotchiActionHandler().actionNotifier(runtimeType);
             Navigator.pop(context);
           },
         ),

@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:tamahaem/action/AbstractAction.dart';
-import 'package:tamahaem/action/TamagotchiMap.dart';
+import 'package:tamahaem/action/ActionHandler.dart';
 
 class DefaultAction extends AbstractAction {
 
@@ -18,7 +18,6 @@ class _DefaultActionState extends State<DefaultAction> {
 
   @override
   Widget build(BuildContext context) {
-    TamagotchiActionHandler().actionNotifier(runtimeType);
     return Container();
   }
 }

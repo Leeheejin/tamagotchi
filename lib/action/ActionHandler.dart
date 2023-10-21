@@ -10,7 +10,7 @@ import 'package:tamahaem/event/EventHandleProvider.dart';
 
 import 'Impl/FeedAction.dart';
 
-class TamagotchiActionHandler {
+class ActionHandler {
 
   static final Map<int, AbstractAction> _actionButtonMap = {
     0: FeedAction(),
