@@ -1,5 +1,8 @@
+import 'dart:ffi';
+
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_shake_animated/flutter_shake_animated.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 import 'package:tamahaem/controller/TamagotchiCounterController.dart';
@@ -7,9 +10,10 @@ import 'package:tamahaem/controller/ui/ActionDialog.dart';
 import 'package:tamahaem/controller/ui/FriendlyGage.dart';
 import 'package:tamahaem/controller/ui/TamagotchiMovement.dart';
 import 'package:tamahaem/controller/ui/TamagotchiStatus.dart';
-import 'package:tamahaem/event/impl/EventHandleProvider.dart';
 
 import '../domain/Tamagotchi.dart';
+import '../event/EventHandleProvider.dart';
+import '../utils/Constants.dart';
 import '../utils/SoundPlayer.dart';
 
 class GameController extends StatefulWidget {
@@ -66,13 +70,21 @@ class _GameControllerState extends State<GameController>
                 builder: (context, eventHandlerProvider, child) {
                   return Visibility(
                       visible: eventHandlerProvider.isEventActive,
-                      child: ClipOval(
-                          child: SizedBox.fromSize(
-                            size:
-                            Size.fromRadius(MediaQuery.of(context).size.width * 0.1),
-                            child: eventHandlerProvider.currentEvent.eventImage,
-                          )
-                      )
+                      child:
+                      ShakeWidget(
+                        duration: Duration(milliseconds: 500),
+                        shakeConstant: ShakeOpacityConstant(),
+                        autoPlay: true,
+                        enableWebMouseHover: false,
+                        child: CircleAvatar(
+                          radius: MediaQuery.of(context).size.height * 0.045,
+                          backgroundColor: Colors.white,
+                          child: CircleAvatar(
+                            backgroundImage: eventHandlerProvider.currentEvent.eventImage,
+                            radius: MediaQuery.of(context).size.height * 0.035,
+                          ),
+                        )
+                      ),
                   );
                 },
               ),
