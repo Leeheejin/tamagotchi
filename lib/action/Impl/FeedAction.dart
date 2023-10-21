@@ -53,14 +53,21 @@ class _FeedActionState extends State<FeedAction> {
                   "assets/images/background/feedActionBackground.png",
                   fit: BoxFit.cover,
                 ))),
-        SizedBox(
-            width: 0.1,
-            height: 0.1,
-            child: GameWidget(
-                game: FeedActionUI(
-                    context: context,
-                    currentStep: currentStep,
-                    onCompleted: _onAnimationDone))),
+        Positioned(
+            child: Center(
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height,
+                  child: GameWidget(
+                      game: FeedActionUI(
+                          context: context,
+                          currentStep: currentStep,
+                          onCompleted: _onAnimationDone
+                      )
+                  )
+                )
+            )
+        ),
         Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.end,

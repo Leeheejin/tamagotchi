@@ -54,9 +54,12 @@ class FeedActionUI extends FlameGame {
   Logger logger = Logger();
 
   @override
+  Color backgroundColor() => const Color(0x00000000);
+
+  @override
   Future<void> onLoad() async {
 
-    await init();
+    await initSheet();
 
     switch (currentStep) {
       case 0:
@@ -79,7 +82,7 @@ class FeedActionUI extends FlameGame {
     }
   }
 
-  Future<void> init() async {
+  Future<void> initSheet() async {
 
     characterSheet = SpriteSheet(
       image: await images.load('character/test.png'),
@@ -90,7 +93,14 @@ class FeedActionUI extends FlameGame {
       image: await images.load('item/food/tile011.png'),
       srcSize: Vector2(16.0, 16.0),
     );
+  }
 
+  void initPosition() {
+    _characterInitPosition = Vector2(-150, 100);
+    final Vector2 _characterCenterPosition = Vector2(-50, 100);
+    final Vector2 _foodInitPosition = Vector2(165, 000);
+    final Vector2 _foodCenterPosition = Vector2(165, 350);
+    final Vector2 _characterClosePosition = Vector2(300, 100);
   }
 
   void characterAppear() {
