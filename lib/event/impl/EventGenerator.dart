@@ -3,8 +3,8 @@ import 'dart:math';
 import 'package:tamahaem/event/AbstractTamagotchiEvent.dart';
 import 'package:tamahaem/event/impl/BoredomEvent.dart';
 import 'package:tamahaem/event/impl/DefaultEvent.dart';
-import 'package:tamahaem/event/impl/HungryEvent.dart';
 import 'package:tamahaem/event/impl/DirtyEvent.dart';
+import 'package:tamahaem/event/impl/HungryEvent.dart';
 import 'package:tamahaem/event/impl/SickEvent.dart';
 import 'package:tamahaem/event/impl/ThirstyEvent.dart';
 

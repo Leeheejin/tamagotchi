@@ -1,10 +1,7 @@
 
-import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:tamahaem/action/AbstractAction.dart';
 import 'package:tamahaem/utils/TamagotchiMap.dart';
-
-import '../ui/FeedActionUI.dart';
 
 class CareAction extends AbstractAction {
 
