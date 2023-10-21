@@ -52,6 +52,7 @@ class _FeedActionState extends State<FeedAction> {
                 child: Image.asset(
                   "assets/images/background/feedActionBackground.png",
                   fit: BoxFit.cover,
+                  opacity: const AlwaysStoppedAnimation(.2),
                 ))),
         Positioned(
             child: Center(
