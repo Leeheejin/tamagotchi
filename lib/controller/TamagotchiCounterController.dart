@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/animation.dart';
 import 'package:logger/logger.dart';
-import 'package:tamahaem/event/impl/EventHandleProvider.dart';
 
 import '../domain/Tamagotchi.dart';
+import '../event/EventHandleProvider.dart';
 import '../utils/Constants.dart';
 
 class TamagotchiCounterController {

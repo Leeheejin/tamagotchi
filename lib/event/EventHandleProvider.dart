@@ -5,8 +5,8 @@ import 'package:logger/logger.dart';
 import 'package:tamahaem/event/AbstractTamagotchiEvent.dart';
 import 'package:tamahaem/event/impl/DefaultEvent.dart';
 
-import '../../domain/Tamagotchi.dart';
-import '../../utils/Constants.dart';
+import '../domain/Tamagotchi.dart';
+import '../utils/Constants.dart';
 import 'EventGenerator.dart';
 
 class EventHandlerProvider extends ChangeNotifier {

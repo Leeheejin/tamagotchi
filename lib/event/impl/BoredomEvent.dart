@@ -5,7 +5,7 @@ import 'package:tamahaem/event/AbstractTamagotchiEvent.dart';
 class BoredomEvent extends AbstractTamagotchiEvent {
 
   Type actionKey = PlayAction().runtimeType;
-  Image eventImage = Image.asset("assets/images/events/boredom.png");
+  AssetImage eventImage = AssetImage("assets/images/events/boredom.png");
 
   @override
   void eventEffect() {

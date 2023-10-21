@@ -5,7 +5,7 @@ import 'package:tamahaem/event/AbstractTamagotchiEvent.dart';
 class DirtyEvent extends AbstractTamagotchiEvent {
 
   Type actionKey = CleanRoomAction().runtimeType;
-  Image eventImage = Image.asset("assets/images/events/dirty.png");
+  AssetImage eventImage = AssetImage("assets/images/events/dirty.png");
 
   @override
   void eventEffect() {

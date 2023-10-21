@@ -5,7 +5,7 @@ import 'package:tamahaem/event/AbstractTamagotchiEvent.dart';
 class HungryEvent extends AbstractTamagotchiEvent {
 
   Type actionKey = FeedAction().runtimeType;
-  Image eventImage = Image.asset("assets/images/events/hungry.png");
+  AssetImage eventImage = AssetImage("assets/images/events/hungry.png");
 
   @override
   void eventEffect() {
