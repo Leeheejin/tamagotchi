@@ -44,10 +44,10 @@ class EventHandlerProvider extends ChangeNotifier {
   }
 
   void setEventInactive() {
+    _isEventActive = false;
     _eventTimer.cancel();
     setCurrentEvent(_eventGenerator.getDefaultEvent());
     currentEvent.eventEffect();
-    _isEventActive = false;
 
     notifyListeners();
   }
