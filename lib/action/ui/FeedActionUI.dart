@@ -16,11 +16,11 @@ class FeedActionUI extends FlameGame {
   FeedActionUI({required this.context, required this.currentStep, required this.onCompleted});
 
   //TODO 이미지 사이즈와 벡터 사이의 비율을 찾아내야 함. 이미지 사이즈 스펙 고정, 아이콘 스펙 고정 필요.
-  final Vector2 _characterInitPosition = Vector2(-150, 100);
-  final Vector2 _characterCenterPosition = Vector2(-50, 100);
-  final Vector2 _foodInitPosition = Vector2(165, 000);
-  final Vector2 _foodCenterPosition = Vector2(165, 350);
-  final Vector2 _characterClosePosition = Vector2(300, 100);
+  late Vector2 _characterInitPosition;
+  late Vector2 _characterCenterPosition;
+  late Vector2 _foodInitPosition;
+  late Vector2 _foodCenterPosition;
+  late Vector2 _characterClosePosition;
   final spriteSize = Vector2(120.0, 120.0); //48
 
   late SpriteSheet characterSheet;
@@ -60,6 +60,7 @@ class FeedActionUI extends FlameGame {
   Future<void> onLoad() async {
 
     await initSheet();
+    initPosition();
 
     switch (currentStep) {
       case 0:
@@ -97,10 +98,10 @@ class FeedActionUI extends FlameGame {
 
   void initPosition() {
     _characterInitPosition = Vector2(-150, 100);
-    final Vector2 _characterCenterPosition = Vector2(-50, 100);
-    final Vector2 _foodInitPosition = Vector2(165, 000);
-    final Vector2 _foodCenterPosition = Vector2(165, 350);
-    final Vector2 _characterClosePosition = Vector2(300, 100);
+    _characterCenterPosition = Vector2(-50, 100);
+    _foodInitPosition = Vector2(165, 000);
+    _foodCenterPosition = Vector2(165, 350);
+    _characterClosePosition = Vector2(300, 100);
   }
 
   void characterAppear() {
