@@ -22,24 +22,21 @@ class GameController extends StatefulWidget {
 class _GameControllerState extends State<GameController>
     with AutomaticKeepAliveClientMixin<GameController> {
   SoundPlayer soundPlayer = SoundPlayer();
-  late TamagotchiCounterController _tamagotchiPenaltyController;
-  late TamagotchiStatus _tamagotchiStatus;
+  late TamagotchiCounterController _tamagotchiCounterController;
   var logger = Logger();
 
   @override
   void initState() {
-    _tamagotchiPenaltyController = TamagotchiCounterController(() {
+    _tamagotchiCounterController = TamagotchiCounterController(() {
       setState(() {});
     });
-
-    _tamagotchiStatus = TamagotchiStatus();
 
     super.initState();
   }
 
   @override
   void dispose() {
-    _tamagotchiPenaltyController.stop();
+    _tamagotchiCounterController.stop();
     super.dispose();
   }
 
@@ -103,7 +100,7 @@ class _GameControllerState extends State<GameController>
           Positioned(
               top: MediaQuery.of(context).size.height * 0.7,
               right: MediaQuery.of(context).size.width * 0.05,
-              child: _tamagotchiStatus
+              child: TamagotchiStatus()
           ),
           Positioned(
             bottom: MediaQuery.of(context).size.height * 0.1,
