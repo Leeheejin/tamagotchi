@@ -114,23 +114,23 @@ class _GameControllerState extends State<GameController>
               top: MediaQuery.of(context).size.height * 0.7,
               right: MediaQuery.of(context).size.width * 0.05,
               child: TamagotchiStatus()),
-          // Positioned(
-          //   bottom: MediaQuery.of(context).size.height * 0.1,
-          //   left: MediaQuery.of(context).size.width * 0.1,
-          //   child: GestureDetector(
-          //     onTap: () {
-          //       _scaleDialog(context);
-          //     },
-          //     child: const SizedBox(
-          //       height: 100,
-          //       width: 100,
-          //       child: Icon(
-          //         Icons.menu,
-          //         size: 50,
-          //       ),
-          //     ),
-          //   ),
-          // ),
+          Positioned(
+            bottom: MediaQuery.of(context).size.height * 0.1,
+            left: MediaQuery.of(context).size.width * 0.1,
+            child: GestureDetector(
+              onTap: () {
+                _scaleDialog(context);
+              },
+              child: const SizedBox(
+                height: 100,
+                width: 100,
+                child: Icon(
+                  Icons.menu,
+                  size: 50,
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );
