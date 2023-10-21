@@ -1,4 +1,3 @@
-
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +7,6 @@ import '../ui/FeedActionUI.dart';
 import '../ui/chat/ChatBox.dart';
 
 class FeedAction extends AbstractAction {
-
   @override
   _FeedActionState createState() => _FeedActionState();
 
@@ -39,42 +37,46 @@ class _FeedActionState extends State<FeedAction> {
 
   void _onAnimationDone() {
     if (!animationDone) {
-        animationDone = true;
+      animationDone = true;
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          Positioned(
-              child: SizedBox(
-                  width: double.infinity,
-                  height: double.infinity,
-                  child: Image.asset("assets/images/background/feedActionBackground.png", fit: BoxFit.cover,)
+      body: Stack(children: [
+        Positioned(
+            child: SizedBox(
+                width: double.infinity,
+                height: double.infinity,
+                child: Image.asset(
+                  "assets/images/background/feedActionBackground.png",
+                  fit: BoxFit.cover,
+                ))),
+        SizedBox(
+            width: 0.1,
+            height: 0.1,
+            child: GameWidget(
+                game: FeedActionUI(
+                    context: context,
+                    currentStep: currentStep,
+                    onCompleted: _onAnimationDone))),
+        Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Center(
+                  child: Container(
+                      width: MediaQuery.of(context).size.width * 0.8,
+                      height: MediaQuery.of(context).size.height * 0.3,
+                      child: ChatBox(
+                        message: messages[currentStep],
+                        onTap: _updateStep,
+                      ))
               )
-          ),
-          SizedBox(
-              width: 0.1,
-              height: 0.1,
-              child: GameWidget(
-                  game: FeedActionUI(
-                      context: context,
-                      currentStep: currentStep,
-                      onCompleted: _onAnimationDone
-                  ))
-          ),
-          Positioned(
-            top: MediaQuery.of(context).size.height * 0.65,
-            left: MediaQuery.of(context).size.width * 0.1,
-            child: ChatBox(
-                message: messages[currentStep],
-                onTap: _updateStep,
-              ),
-            ),
-        ],
-      ),
+            ]
+        )
+      ]),
     );
   }
 }

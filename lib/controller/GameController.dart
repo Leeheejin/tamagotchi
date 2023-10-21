@@ -80,21 +80,22 @@ class _GameControllerState extends State<GameController>
           ),
           Positioned(
               top: MediaQuery.of(context).size.height * 0.1,
-              left: MediaQuery.of(context).size.width * 0.25,
-              child: SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.1,
-                  width: MediaQuery.of(context).size.width * 0.5,
-                  child: ChangeNotifierProvider.value(
-                      value: Tamagotchi(),
-                      child: Consumer<Tamagotchi> (
-                          builder: (context, tamagotchi, child) {
-                        return FriendlyGage(
-                          key: ValueKey(tamagotchi.friendlyValue),
-                          friendly: tamagotchi.friendlyValue,
-                        );
-                      }
-                      )
-                  )
+              child: Center(
+                child: ChangeNotifierProvider.value(
+                    value: Tamagotchi(),
+                    child: Consumer<Tamagotchi> (
+                        builder: (context, tamagotchi, child) {
+                          return Container(
+                            width: MediaQuery.of(context).size.width,
+                            height: MediaQuery.of(context).size.height * 0.1,
+                            child: FriendlyGage(
+                              key: ValueKey(tamagotchi.friendlyValue),
+                              friendly: tamagotchi.friendlyValue,
+                            ),
+                          );
+                        }
+                    )
+                ),
               )
           ),
           Positioned(

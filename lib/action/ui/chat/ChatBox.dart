@@ -35,8 +35,8 @@ class _ChatBoxState extends State<ChatBox> {
         child: Stack(
             children: [
               SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.8,
-                  height: MediaQuery.of(context).size.height * 0.3,
+                  width: double.infinity,
+                  height: double.infinity,
                   child: _background(context)
               ),
               Positioned(
