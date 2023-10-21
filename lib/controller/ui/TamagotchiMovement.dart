@@ -91,32 +91,46 @@ class TamagotchiMovement extends FlameGame {
 
 
   Vector2 getRandomNextPosition() {
-
-    bool direction = Random().nextBool();
     double x = _currentPosition.x;
     double y = _currentPosition.y;
 
-    if (direction) {
-      x = checkXBound(_currentPosition.x, getRandomPosition());
+    // Check proximity to edges
+    double leftProximity = (x + 80) / 260;  // Range: [0, 1] where 1 is very close to the left edge
+    double rightProximity = (180 - x) / 260; // Range: [0, 1] where 1 is very close to the right edge
+    // Assuming similar boundaries for y-axis
+    double topProximity = (y + 80) / 260;
+    double bottomProximity = (180 - y) / 260;
+
+    // We'll use these proximities to determine if we should favor x or y movement
+    double xBias = leftProximity + rightProximity;
+    double yBias = topProximity + bottomProximity;
+    bool favorX = Random().nextDouble() < (0.5 + xBias * 0.25);
+
+    if (favorX) {
+      if (leftProximity > rightProximity) {
+        x = checkXBound(x, getRandomPosition().abs());
+      } else {
+        x = checkXBound(x, -getRandomPosition().abs());
+      }
     } else {
-      y = checkYBound(_currentPosition.y, getRandomPosition());
+      if (topProximity > bottomProximity) {
+        y = checkYBound(y, getRandomPosition().abs());
+      } else {
+        y = checkYBound(y, -getRandomPosition().abs());
+      }
     }
 
     return Vector2(x, y);
   }
 
   double getRandomPosition() {
-    bool positive = Random().nextBool();
-
-    if (positive) {
-      return 25 + Random().nextDouble() * 75;
-    }
-
-    return 25 + Random().nextDouble() * 75 * -1;
+    double magnitude = 50.0 + GaussianDistribution().next() * 25.0;
+    double sign = Random().nextBool() ? 1.0 : -1.0;
+    return magnitude * sign;
   }
 
   //TODO screen size refactor need.
-  //TODO make sub page that limits chracters move range.
+  //TODO make sub page that limits characters move range.
   double checkXBound(double point, double addition) {
 
     if (addition > 0) {
@@ -157,4 +171,16 @@ enum MovingDirection {
   Up,  // 1
   Left, // 2
   Right // 3
+}
+
+class GaussianDistribution {
+  final Random _random = Random();
+
+  double next() {
+    // Using Box-Muller transform to get numbers in a Gaussian distribution
+    double u1 = _random.nextDouble();
+    double u2 = _random.nextDouble();
+    double z0 = sqrt(-2.0 * log(u1)) * cos(2 * pi * u2);
+    return z0;
+  }
 }
