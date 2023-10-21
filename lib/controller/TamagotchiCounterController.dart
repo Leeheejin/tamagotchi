@@ -33,15 +33,13 @@ class TamagotchiCounterController {
   }
 
   void stop() {
-    EventHandleProvider.instance.inactiveEvent();
+    EventHandlerProvider().setEventInactive();
     _timer.cancel();
     _onTick();
   }
 
-  // there is a bug, when expanded button list, then rerendering tamagotchi's movement
-  // so, i deleted ontick call in every functions. i dont knwo that is right solution.
   void startEventLoop(Timer timer) {
-    EventHandleProvider.instance.startEvent();
+    EventHandlerProvider().startEvent();
 
     logger.v("event start ${_tamagotchi.hunger} ${_tamagotchi.thirst} ${_tamagotchi.happiness}");
   }

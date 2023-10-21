@@ -63,14 +63,23 @@ class _GameControllerState extends State<GameController>
           Positioned(
             top: MediaQuery.of(context).size.height * 0.25,
             left: MediaQuery.of(context).size.width * 0.05,
-            child: Visibility(
-                visible: EventHandleProvider.instance.isEventActive,
-                child: ClipOval(
-                    child: SizedBox.fromSize(
-                  size:
-                      Size.fromRadius(MediaQuery.of(context).size.width * 0.1),
-                  child: EventHandleProvider.instance.currentEvent.eventImage,
-                ))),
+            child: ChangeNotifierProvider.value(
+              value: EventHandlerProvider(),
+              child: Consumer<EventHandlerProvider> (
+                builder: (context, eventHandlerProvider, child) {
+                  return Visibility(
+                      visible: eventHandlerProvider.isEventActive,
+                      child: ClipOval(
+                          child: SizedBox.fromSize(
+                            size:
+                            Size.fromRadius(MediaQuery.of(context).size.width * 0.1),
+                            child: eventHandlerProvider.currentEvent.eventImage,
+                          )
+                      )
+                  );
+                },
+              ),
+            ),
           ),
           Positioned(
               top: MediaQuery.of(context).size.height * 0.1,
@@ -80,7 +89,7 @@ class _GameControllerState extends State<GameController>
                   width: MediaQuery.of(context).size.width * 0.5,
                   child: ChangeNotifierProvider.value(
                       value: Tamagotchi(),
-                      child: Consumer<Tamagotchi>(
+                      child: Consumer<Tamagotchi> (
                           builder: (context, tamagotchi, child) {
                         return FriendlyGage(
                           key: ValueKey(tamagotchi.friendlyValue),
@@ -94,7 +103,8 @@ class _GameControllerState extends State<GameController>
           Positioned(
               top: MediaQuery.of(context).size.height * 0.7,
               right: MediaQuery.of(context).size.width * 0.05,
-              child: _tamagotchiStatus),
+              child: _tamagotchiStatus
+          ),
           Positioned(
             bottom: MediaQuery.of(context).size.height * 0.1,
             left: MediaQuery.of(context).size.width * 0.1,

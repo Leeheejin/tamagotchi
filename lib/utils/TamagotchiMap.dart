@@ -19,7 +19,7 @@ class TamagotchiMap {
     4: CareAction(),
   };
 
-  void actionNotifier(Type type) => { EventHandleProvider.instance.currentEvent.handleEvent(type) };
+  void actionNotifier(Type type) => { EventHandlerProvider().currentEvent.handleEvent(type) };
 
   Widget getAction(int index) {
 

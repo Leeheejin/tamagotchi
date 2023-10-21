@@ -10,11 +10,8 @@ abstract class AbstractTamagotchiEvent {
   Logger logger = Logger();
 
   void handleEvent(Type actionType) {
-
-    logger.v("action ocurred: $actionType");
-
     if (actionKey == actionType) {
-      EventHandleProvider.instance.handleEvent();
+      EventHandlerProvider().handleEvent();
     }
   }
 

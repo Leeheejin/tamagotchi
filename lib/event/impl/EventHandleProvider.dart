@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/cupertino.dart';
 import 'package:logger/logger.dart';
 import 'package:tamahaem/event/AbstractTamagotchiEvent.dart';
 import 'package:tamahaem/event/impl/DefaultEvent.dart';
@@ -8,43 +9,53 @@ import '../../domain/Tamagotchi.dart';
 import '../../utils/Constants.dart';
 import 'EventGenerator.dart';
 
-class EventHandleProvider {
+class EventHandlerProvider extends ChangeNotifier {
+  static final EventHandlerProvider _instance = EventHandlerProvider._internal();
+
   Tamagotchi _tamagotchi = Tamagotchi();
-  EventGenerator _eventGenerator = EventGenerator();
+  final EventGenerator _eventGenerator = EventGenerator();
   AbstractTamagotchiEvent _currentEvent = DefaultEvent();
-  Logger logger = Logger();
   bool _isEventActive = false;
+  Logger logger = Logger();
+
   late Timer _eventTimer;
-  late AbstractTamagotchiEvent _tamagotchiEvent;
 
-  static final EventHandleProvider instance = EventHandleProvider._internal();
+  factory EventHandlerProvider() {
+    return _instance;
+  }
 
-  EventHandleProvider._internal() {
+  EventHandlerProvider._internal() {
+    setCurrentEvent(_eventGenerator.getDefaultEvent());
   }
 
   void setCurrentEvent(AbstractTamagotchiEvent event) {
     _currentEvent = event;
+
+    notifyListeners();
   }
 
-  void activeEvent() {
-    _tamagotchiEvent = _eventGenerator.getRandomEvent();
-    setCurrentEvent(_tamagotchiEvent);
+  void setEventActive() {
+    setCurrentEvent(_eventGenerator.getRandomEvent());
     currentEvent.doAct();
     logger.v("current event: ${currentEvent.runtimeType}");
     _isEventActive = true;
+
+    notifyListeners();
   }
 
-  void inactiveEvent() {
+  void setEventInactive() {
     _eventTimer.cancel();
     setCurrentEvent(_eventGenerator.getDefaultEvent());
     currentEvent.doAct();
     _isEventActive = false;
+
+    notifyListeners();
   }
 
   void handleEvent() {
     logger.v("event succeed: ${currentEvent.runtimeType}");
     _tamagotchi.increaseFriendly();
-    inactiveEvent();
+    setEventInactive();
   }
 
   bool get isEventActive => _isEventActive;
@@ -53,14 +64,14 @@ class EventHandleProvider {
 
   void startEvent() {
 
-    activeEvent();
+    setEventActive();
 
     _eventTimer = Timer(const Duration(minutes: DAMAGOCHI_EVENT_TIME_MINUTE), () {
       if (_eventTimer.isActive) {
         _tamagotchi.decreaseFriendly();
         logger.v("event failed ${_tamagotchi.friendlyValue}");
       }
-      inactiveEvent();
+      setEventInactive();
     });
   }
 }
