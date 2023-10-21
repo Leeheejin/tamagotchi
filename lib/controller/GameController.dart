@@ -48,13 +48,9 @@ class _GameControllerState extends State<GameController>
         children: <Widget>[
           Positioned(
             child: SizedBox(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height,
-                child: Column(
-                  children: [
-                    Image.asset("assets/images/background/homeBackground.png")
-                  ],
-                )
+                width: double.infinity,
+                height: double.infinity,
+                child: Image.asset("assets/images/background/homeBackground.png", fit: BoxFit.cover,)
             )
           ),
           SizedBox(

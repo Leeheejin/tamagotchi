@@ -49,15 +49,11 @@ class _FeedActionState extends State<FeedAction> {
       body: Stack(
         children: [
           Positioned(
-            child: SizedBox(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height,
-              child: Column(
-                children: [
-                  Image.asset("assets/images/background/feedActionBackground.png"),
-                ],
+              child: SizedBox(
+                  width: double.infinity,
+                  height: double.infinity,
+                  child: Image.asset("assets/images/background/feedActionBackground.png", fit: BoxFit.cover,)
               )
-            ),
           ),
           SizedBox(
               width: 0.1,
