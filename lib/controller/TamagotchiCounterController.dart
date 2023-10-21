@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/animation.dart';
 import 'package:logger/logger.dart';
-import 'package:tamahaem/domain/TamagotchiProvider.dart';
 import 'package:tamahaem/event/impl/EventHandleProvider.dart';
 
 import '../domain/Tamagotchi.dart';
@@ -10,7 +9,7 @@ import '../utils/Constants.dart';
 
 class TamagotchiCounterController {
   late Timer _timer;
-  Tamagotchi _tamagotchi = TamagotchiProvider.instance.tamagotchi;
+  Tamagotchi _tamagotchi = Tamagotchi();
   VoidCallback _onTick;
   Logger logger = Logger();
 

@@ -5,12 +5,11 @@ import 'package:tamahaem/event/AbstractTamagotchiEvent.dart';
 import 'package:tamahaem/event/impl/DefaultEvent.dart';
 
 import '../../domain/Tamagotchi.dart';
-import '../../domain/TamagotchiProvider.dart';
 import '../../utils/Constants.dart';
 import 'EventGenerator.dart';
 
 class EventHandleProvider {
-  Tamagotchi _tamagotchi = TamagotchiProvider.instance.tamagotchi;
+  Tamagotchi _tamagotchi = Tamagotchi();
   EventGenerator _eventGenerator = EventGenerator();
   AbstractTamagotchiEvent _currentEvent = DefaultEvent();
   Logger logger = Logger();

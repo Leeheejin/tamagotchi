@@ -1,22 +1,26 @@
+import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 enum TamagotchiStage { EGG, BABY, TEEN, ADULT }
 
-class Tamagotchi {
+class Tamagotchi extends ChangeNotifier {
+
+  static final Tamagotchi _instance = Tamagotchi._internal();
+
+  factory Tamagotchi() {
+    return _instance;
+  }
+
+  Tamagotchi._internal() {
+   load();
+  }
 
   TamagotchiStage _currentStage = TamagotchiStage.EGG;
   double _friendlyValue = 0.5;
   int _age = 0;
-  int _hunger = 0;
-  int _thirst = 0;
-  int _happiness = 0;
-
-
-  Tamagotchi() {
-    _hunger = 50;
-    _thirst = 50;
-    _happiness = 50;
-  }
+  int _hunger = 50;
+  int _thirst = 50;
+  int _happiness = 50;
 
   int get hunger => _hunger;
   int get thirst => _thirst;
@@ -80,6 +84,8 @@ class Tamagotchi {
     } else {
       _friendlyValue = friendlyValue;
     }
+
+    notifyListeners();
   }
 
   void setHunger(int hunger) {
@@ -90,6 +96,8 @@ class Tamagotchi {
     } else {
       _hunger = hunger;
     }
+
+    notifyListeners();
   }
 
   void setThirst(int thirst) {
@@ -100,6 +108,8 @@ class Tamagotchi {
     } else {
       _thirst = thirst;
     }
+
+    notifyListeners();
   }
 
   void setHappiness(int happiness) {
@@ -110,6 +120,8 @@ class Tamagotchi {
     } else {
       _happiness = happiness;
     }
+
+    notifyListeners();
   }
 
   void grow() {
@@ -128,6 +140,7 @@ class Tamagotchi {
       }
     }
 
+    notifyListeners();
     save();
   }
 

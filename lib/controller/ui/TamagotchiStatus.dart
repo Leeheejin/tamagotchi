@@ -1,47 +1,48 @@
+import 'dart:ffi';
+
 import 'package:flutter/cupertino.dart';
-import 'package:tamahaem/domain/TamagotchiProvider.dart';
+import 'package:provider/provider.dart';
 
 import '../../domain/Tamagotchi.dart';
 
 class TamagotchiStatus extends StatelessWidget {
-  Tamagotchi tamagotchi = TamagotchiProvider.instance.tamagotchi;
 
-  String getHungerImage() {
-    if (tamagotchi.hunger >= 75) {
+  String getHungerImage(int hunger) {
+    if (hunger >= 75) {
       return "assets/images/status/75.jpg";
     }
-    else if (tamagotchi.hunger >= 50) {
+    else if (hunger >= 50) {
       return "assets/images/status/50.png";
     }
-    else if (tamagotchi.hunger >= 25) {
+    else if (hunger >= 25) {
       return "assets/images/status/25.png";
     }
 
     return "assets/images/status/zero.png";
   }
 
-  String getThirstImage() {
-    if (tamagotchi.thirst >= 75) {
+  String getThirstImage(int thirst) {
+    if (thirst >= 75) {
       return "assets/images/status/75.jpg";
     }
-    else if (tamagotchi.thirst >= 50) {
+    else if (thirst >= 50) {
       return "assets/images/status/50.png";
     }
-    else if (tamagotchi.thirst >= 25) {
+    else if (thirst >= 25) {
       return "assets/images/status/25.png";
     }
 
     return "assets/images/status/zero.png";
   }
 
-  String getHappinessImage() {
-    if (tamagotchi.happiness >= 75) {
+  String getHappinessImage(int happiness) {
+    if (happiness >= 75) {
       return "assets/images/status/75.jpg";
     }
-    else if (tamagotchi.happiness >= 50) {
+    else if (happiness >= 50) {
       return "assets/images/status/50.png";
     }
-    else if (tamagotchi.happiness >= 25) {
+    else if (happiness >= 25) {
       return "assets/images/status/25.png";
     }
 
@@ -50,24 +51,31 @@ class TamagotchiStatus extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        SizedBox(
-              width: 70,
-              height: 70,
-              child: Image.asset(getHungerImage()),
-            ),
-        SizedBox(
-          width: 70,
-          height: 70,
-          child: Image.asset(getThirstImage()),
-        ),
-        SizedBox(
-            width: 70,
-            height: 70,
-            child: Image.asset(getHappinessImage()),
-          ),
-      ],
+    return ChangeNotifierProvider.value(
+      value: Tamagotchi(),
+      child: Consumer<Tamagotchi>(
+        builder: (context, tamagotchi, child) {
+          return Column(
+            children: <Widget>[
+              SizedBox(
+                width: 70,
+                height: 70,
+                child: Image.asset(getHungerImage(tamagotchi.hunger)),
+              ),
+              SizedBox(
+                width: 70,
+                height: 70,
+                child: Image.asset(getThirstImage(tamagotchi.thirst)),
+              ),
+              SizedBox(
+                width: 70,
+                height: 70,
+                child: Image.asset(getHappinessImage(tamagotchi.happiness)),
+              ),
+            ],
+          );
+        },
+      )
     );
   }
 }
