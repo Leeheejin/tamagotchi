@@ -111,7 +111,7 @@ class _GameControllerState extends State<GameController>
                     })),
               )),
           Positioned(
-              top: MediaQuery.of(context).size.height * 0.7,
+              top: MediaQuery.of(context).size.height * 0.25,
               right: MediaQuery.of(context).size.width * 0.05,
               child: TamagotchiStatus()),
           Positioned(
