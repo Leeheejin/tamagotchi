@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:tamahaem/action/AbstractAction.dart';
-import 'package:tamahaem/utils/TamagotchiMap.dart';
+import 'package:tamahaem/action/TamagotchiMap.dart';
 
 class WaterAction extends AbstractAction {
 
   @override
   _WaterActionState createState() => _WaterActionState();
+
+  @override
+  void action() {
+    tamagotchi.water();
+  }
 }
 
 class _WaterActionState extends State<WaterAction> {
@@ -30,7 +35,7 @@ class _WaterActionState extends State<WaterAction> {
         child: ElevatedButton(
           child: const Text("돌아가기"),
           onPressed: () {
-            TamagotchiMap().actionNotifier(runtimeType);
+            TamagotchiActionHandler().actionNotifier(runtimeType);
             Navigator.pop(context);
           },
         ),

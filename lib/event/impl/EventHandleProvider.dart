@@ -36,7 +36,7 @@ class EventHandlerProvider extends ChangeNotifier {
 
   void setEventActive() {
     setCurrentEvent(_eventGenerator.getRandomEvent());
-    currentEvent.doAct();
+    currentEvent.eventEffect();
     logger.v("current event: ${currentEvent.runtimeType}");
     _isEventActive = true;
 
@@ -46,7 +46,7 @@ class EventHandlerProvider extends ChangeNotifier {
   void setEventInactive() {
     _eventTimer.cancel();
     setCurrentEvent(_eventGenerator.getDefaultEvent());
-    currentEvent.doAct();
+    currentEvent.eventEffect();
     _isEventActive = false;
 
     notifyListeners();

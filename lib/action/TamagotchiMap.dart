@@ -1,17 +1,18 @@
 import 'dart:core';
 
 import 'package:flutter/cupertino.dart';
+import 'package:tamahaem/action/AbstractAction.dart';
 import 'package:tamahaem/action/Impl/CareAction.dart';
 import 'package:tamahaem/action/Impl/CleanAction.dart';
 import 'package:tamahaem/action/Impl/PlayAction.dart';
 import 'package:tamahaem/action/Impl/WaterAction.dart';
 import 'package:tamahaem/event/impl/EventHandleProvider.dart';
 
-import '../action/Impl/FeedAction.dart';
+import 'Impl/FeedAction.dart';
 
-class TamagotchiMap {
+class TamagotchiActionHandler {
 
-  static final Map<int, Widget> _actionButtonMap = {
+  static final Map<int, AbstractAction> _actionButtonMap = {
     0: FeedAction(),
     1: WaterAction(),
     2: PlayAction(),
@@ -21,7 +22,7 @@ class TamagotchiMap {
 
   void actionNotifier(Type type) => { EventHandlerProvider().currentEvent.handleEvent(type) };
 
-  Widget getAction(int index) {
+  AbstractAction getAction(int index) {
 
     actionNotifier(_actionButtonMap[index].runtimeType);
 

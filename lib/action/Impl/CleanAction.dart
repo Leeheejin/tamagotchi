@@ -1,12 +1,17 @@
 
 import 'package:flutter/material.dart';
 import 'package:tamahaem/action/AbstractAction.dart';
-import 'package:tamahaem/utils/TamagotchiMap.dart';
+import 'package:tamahaem/action/TamagotchiMap.dart';
 
 class CleanAction extends AbstractAction {
 
   @override
   _CleanActionState createState() => _CleanActionState();
+
+  @override
+  void action() {
+    tamagotchi.clean();
+  }
 }
 
 class _CleanActionState extends State<CleanAction> {
@@ -31,7 +36,7 @@ class _CleanActionState extends State<CleanAction> {
         child: ElevatedButton(
           child: const Text("돌아가기"),
           onPressed: () {
-            TamagotchiMap().actionNotifier(runtimeType);
+            TamagotchiActionHandler().actionNotifier(runtimeType);
             Navigator.pop(context);
           },
         ),

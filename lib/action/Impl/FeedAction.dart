@@ -11,6 +11,11 @@ class FeedAction extends AbstractAction {
 
   @override
   _FeedActionState createState() => _FeedActionState();
+
+  @override
+  void action() {
+    tamagotchi.feed();
+  }
 }
 
 class _FeedActionState extends State<FeedAction> {

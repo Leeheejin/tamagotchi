@@ -15,5 +15,5 @@ abstract class AbstractTamagotchiEvent {
     }
   }
 
-  void doAct();
+  void eventEffect();
 }

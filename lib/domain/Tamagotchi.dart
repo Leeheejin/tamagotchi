@@ -166,7 +166,6 @@ class Tamagotchi extends ChangeNotifier {
 
   void feed() {
     setHunger(hunger + 15);
-    save();
   }
 
   void water() {
@@ -175,32 +174,43 @@ class Tamagotchi extends ChangeNotifier {
 
   void hungry() {
     setHunger(hunger - 15);
-    save();
   }
 
   void happy() {
     setHappiness(happiness + 15);
-    save();
   }
 
   void unhappiness() {
     setHappiness(happiness - 5);
-    save();
+  }
+
+  void care() {
+    setHappiness(happiness + 15);
+    setHunger(hunger + 5);
+    setThirst(thirst + 5);
   }
 
   void sick() {
     setHunger(hunger - 10);
     setThirst(thirst - 10);
     setHappiness(happiness - 10);
-    save();
   }
 
   void thirsty() {
     setThirst(thirst - 10);
-    save();
   }
 
   void poop() {
     setHappiness(happiness - 10);
+  }
+
+  void clean() {
+    setHappiness(happiness + 10);
+    setHunger(hunger - 5);
+    setThirst(thirst - 5);
+  }
+
+  void play() {
+    setHappiness(happiness + 10);
   }
 }

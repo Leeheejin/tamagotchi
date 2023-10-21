@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
-import 'package:tamahaem/utils/TamagotchiMap.dart';
+import 'package:tamahaem/action/AbstractAction.dart';
+import 'package:tamahaem/action/TamagotchiMap.dart';
 
 import '../../transition/AnimationPageRoute.dart';
 
@@ -42,7 +43,7 @@ class _ActionButtonState extends State<ActionButton> {
 
         onTap: () {
           Navigator.of(context).pop(true);
-          Navigator.of(context).push(AnimationPageRoute(widget: TamagotchiMap().getAction(widget.index)));
+          Navigator.of(context).push(AnimationPageRoute(widget: TamagotchiActionHandler().getAction(widget.index).doAction()));
         },
 
         child: Stack(

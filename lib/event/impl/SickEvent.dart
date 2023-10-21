@@ -8,7 +8,7 @@ class SickEvent extends AbstractTamagotchiEvent {
   Image eventImage = Image.asset("assets/images/events/sick.png");
 
   @override
-  void doAct() {
+  void eventEffect() {
     tamagotchi.sick();
   }
 

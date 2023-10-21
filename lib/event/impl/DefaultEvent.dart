@@ -8,7 +8,7 @@ class DefaultEvent extends AbstractTamagotchiEvent {
   Image eventImage = Image.asset("assets/images/events/happy.png");
 
   @override
-  void doAct() {
+  void eventEffect() {
     // do nothing. is default.
   }
 

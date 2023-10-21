@@ -8,7 +8,7 @@ class DirtyEvent extends AbstractTamagotchiEvent {
   Image eventImage = Image.asset("assets/images/events/dirty.png");
 
   @override
-  void doAct() {
+  void eventEffect() {
     tamagotchi.poop();
   }
 

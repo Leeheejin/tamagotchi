@@ -8,7 +8,7 @@ class BoredomEvent extends AbstractTamagotchiEvent {
   Image eventImage = Image.asset("assets/images/events/boredom.png");
 
   @override
-  void doAct() {
+  void eventEffect() {
     tamagotchi.unhappiness();
   }
 
