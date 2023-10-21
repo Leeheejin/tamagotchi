@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:tamahaem/action/AbstractAction.dart';
 import 'package:tamahaem/action/ActionHandler.dart';
 
-import '../../transition/AnimationPageRoute.dart';
+import 'package:tamahaem/transition/AnimationPageRoute.dart';
 
 class ActionButton extends StatefulWidget {
   int index = 0;

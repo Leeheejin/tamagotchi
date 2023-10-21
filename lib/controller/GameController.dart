@@ -6,7 +6,7 @@ import 'package:flutter_shake_animated/flutter_shake_animated.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 import 'package:tamahaem/controller/TamagotchiCounterController.dart';
-import 'package:tamahaem/controller/ui/ActionDialog.dart';
+import 'package:tamahaem/controller/ui/menu/ActionDialog.dart';
 import 'package:tamahaem/controller/ui/FriendlyGage.dart';
 import 'package:tamahaem/controller/ui/TamagotchiMovement.dart';
 import 'package:tamahaem/controller/ui/TamagotchiStatus.dart';

@@ -1,10 +1,9 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
+import 'package:tamahaem/controller/ui/chat/ChatBox.dart';
 import 'package:tamahaem/action/AbstractAction.dart';
-
-import '../ui/FeedActionUI.dart';
-import '../ui/chat/ChatBox.dart';
+import 'package:tamahaem/action/animation/FeedActionAnimation.dart';
 
 class FeedAction extends AbstractAction {
   @override
