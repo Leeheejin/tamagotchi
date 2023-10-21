@@ -87,7 +87,7 @@ class FeedActionUI extends FlameGame {
 
   Future<void> initSheet() async {
     characterSheet = SpriteSheet(
-      image: await images.load('character/test.png'),
+      image: await images.load('character/ham.png'),
       srcSize: Vector2(120.0, 120.0),
     );
 

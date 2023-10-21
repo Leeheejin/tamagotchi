@@ -46,7 +46,7 @@ class TamagotchiMovement extends FlameGame {
     _spriteSize = Vector2(120, 120);
 
     spriteSheet = SpriteSheet(
-      image: await images.load('character/test.png'),
+      image: await images.load('character/ham.png'),
       srcSize: Vector2(_spriteSize.x, _spriteSize.y),
     );
 
