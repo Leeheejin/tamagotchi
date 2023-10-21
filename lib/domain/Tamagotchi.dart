@@ -164,6 +164,14 @@ class Tamagotchi extends ChangeNotifier {
     setHappiness(happiness - 5);
   }
 
+  void feed() {
+    setHunger(hunger + 15);
+    save();
+  }
+
+  void water() {
+    setThirst(thirst + 15);
+  }
 
   void hungry() {
     setHunger(hunger - 15);
