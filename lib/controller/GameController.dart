@@ -80,7 +80,7 @@ class _GameControllerState extends State<GameController>
                       visible: eventHandlerProvider.isEventActive,
                       child:
                       ShakeWidget(
-                        duration: Duration(seconds: 5),
+                        duration: Duration(seconds: 2),
                         shakeConstant: ShakeHorizontalConstant2(),
                         autoPlay: true,
                         enableWebMouseHover: false,
