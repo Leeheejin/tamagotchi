@@ -50,8 +50,12 @@ class _GameControllerState extends State<GameController>
             child: SizedBox(
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height,
-                child:
-                    Image.asset("assets/images/background/homeBackground.png")),
+                child: Column(
+                  children: [
+                    Image.asset("assets/images/background/homeBackground.png")
+                  ],
+                )
+            )
           ),
           SizedBox(
               width: 0.1,

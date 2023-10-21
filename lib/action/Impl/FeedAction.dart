@@ -52,7 +52,11 @@ class _FeedActionState extends State<FeedAction> {
             child: SizedBox(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height,
-              child: Column(),
+              child: Column(
+                children: [
+                  Image.asset("assets/images/background/feedActionBackground.png"),
+                ],
+              )
             ),
           ),
           SizedBox(

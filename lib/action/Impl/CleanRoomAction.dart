@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:tamahaem/action/AbstractAction.dart';
 import 'package:tamahaem/action/TamagotchiMap.dart';
 
-class CleanAction extends AbstractAction {
+class CleanRoomAction extends AbstractAction {
 
   @override
   _CleanActionState createState() => _CleanActionState();
@@ -14,7 +14,7 @@ class CleanAction extends AbstractAction {
   }
 }
 
-class _CleanActionState extends State<CleanAction> {
+class _CleanActionState extends State<CleanRoomAction> {
   int currentStep = 1;
   final List<String> messages = [
     "Step 1: See the red box.",

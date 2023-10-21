@@ -3,7 +3,7 @@ import 'dart:core';
 import 'package:flutter/cupertino.dart';
 import 'package:tamahaem/action/AbstractAction.dart';
 import 'package:tamahaem/action/Impl/CareAction.dart';
-import 'package:tamahaem/action/Impl/CleanAction.dart';
+import 'package:tamahaem/action/Impl/CleanRoomAction.dart';
 import 'package:tamahaem/action/Impl/PlayAction.dart';
 import 'package:tamahaem/action/Impl/WaterAction.dart';
 import 'package:tamahaem/event/impl/EventHandleProvider.dart';
@@ -16,7 +16,7 @@ class TamagotchiActionHandler {
     0: FeedAction(),
     1: WaterAction(),
     2: PlayAction(),
-    3: CleanAction(),
+    3: CleanRoomAction(),
     4: CareAction(),
   };
 
