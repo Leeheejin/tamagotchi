@@ -56,7 +56,7 @@ class TamagotchiMovement extends FlameGame {
 
     spriteAnimationComponent = SpriteAnimationComponent(
       animation: animation,
-      scale: Vector2(2, 2), // 8
+      scale: Vector2(3, 3), // 8
       position: Vector2(_currentPosition.x, _currentPosition.y),
       size: _spriteSize,
     );

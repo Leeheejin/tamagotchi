@@ -71,6 +71,9 @@ flutter:
   assets:
     - assets/images/character/
     - assets/images/status/
+    - assets/images/status/hunger/
+    - assets/images/status/water/
+    - assets/images/status/happiness/
     - assets/images/button/
     - assets/images/gage/
     - assets/images/background/
