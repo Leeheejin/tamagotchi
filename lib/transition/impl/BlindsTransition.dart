@@ -5,11 +5,10 @@ class BlindsTransition extends StatelessWidget {
   final bool isHorizontal;
   final Color transitionColor;
 
-  const BlindsTransition({
-    required this.animation,
-    required this.isHorizontal,
-    required this.transitionColor
-  });
+  const BlindsTransition(
+      {required this.animation,
+      required this.isHorizontal,
+      required this.transitionColor});
 
   @override
   Widget build(BuildContext context) {

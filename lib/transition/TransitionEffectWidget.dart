@@ -1,8 +1,5 @@
-import 'dart:math';
-
 import 'package:flutter/cupertino.dart';
 
-import 'impl/BlindsTransition.dart';
 import 'impl/CircleTransition.dart';
 
 class TransitionEffectWidget extends StatelessWidget {
@@ -29,7 +26,8 @@ class TransitionEffectWidget extends StatelessWidget {
             children: [
               currentScreen,
               CircleTransition(
-                animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
+                animation:
+                    Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
                   parent: animation,
                   curve: Interval(0.0, 0.5, curve: Curves.easeOut),
                 )),
@@ -41,13 +39,16 @@ class TransitionEffectWidget extends StatelessWidget {
           return Stack(
             children: [
               nextScreen,
-              animation.value < 1.0 ? CircleTransition(
-                animation: Tween<double>(begin: 1.0, end: 0.0).animate(CurvedAnimation(
-                  parent: animation,
-                  curve: Interval(0.5, 1.0, curve: Curves.easeIn),
-                )),
-                transitionColor: transitionColor,
-              ) : const Column(),
+              animation.value < 1.0
+                  ? CircleTransition(
+                      animation: Tween<double>(begin: 1.0, end: 0.0)
+                          .animate(CurvedAnimation(
+                        parent: animation,
+                        curve: Interval(0.5, 1.0, curve: Curves.easeIn),
+                      )),
+                      transitionColor: transitionColor,
+                    )
+                  : const Column(),
             ],
           );
         }
@@ -55,4 +56,3 @@ class TransitionEffectWidget extends StatelessWidget {
     );
   }
 }
-

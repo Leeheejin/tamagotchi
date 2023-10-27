@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tamahaem/controller/ui/menu/ActionButton.dart';
 
 class ActionDialog extends StatefulWidget {
-  const ActionDialog({Key? key}): super(key: key);
+  const ActionDialog({Key? key}) : super(key: key);
 
   @override
   _ActionDialogState createState() => _ActionDialogState();

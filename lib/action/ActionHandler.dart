@@ -19,9 +19,7 @@ class ActionHandler {
   };
 
   void actionNotifier(Type type) =>
-      {
-        EventHandlerProvider().currentEvent.handleEvent(type)
-      };
+      {EventHandlerProvider().currentEvent.handleEvent(type)};
 
   AbstractAction getAction(int index) {
     actionNotifier(_actionButtonMap[index].runtimeType);

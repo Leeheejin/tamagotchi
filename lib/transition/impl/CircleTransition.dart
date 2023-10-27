@@ -1,5 +1,4 @@
 import 'dart:math';
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
@@ -7,7 +6,8 @@ class CircleTransition extends StatelessWidget {
   final Animation<double> animation;
   final Color transitionColor;
 
-  const CircleTransition({required this.animation, required this.transitionColor});
+  const CircleTransition(
+      {required this.animation, required this.transitionColor});
 
   @override
   Widget build(BuildContext context) {

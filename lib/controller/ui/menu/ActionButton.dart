@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tamahaem/action/AbstractAction.dart';
 import 'package:tamahaem/action/ActionHandler.dart';
-import 'package:tamahaem/controller/TamagotchiController.dart';
 import 'package:tamahaem/transition/AnimationPageRoute.dart';
 
 import 'ActionDialog.dart';
@@ -45,10 +44,9 @@ class _ActionButtonState extends State<ActionButton> {
           Navigator.of(context).pop();
           Navigator.of(context).push(
             AnimationPageRoute(
-              currentScreen: const ActionDialog(),
-              nextScreen: action,
-              transitionColor: action.transitionColor
-            ),
+                currentScreen: const ActionDialog(),
+                nextScreen: action,
+                transitionColor: action.transitionColor),
           );
 
           action.doAction();

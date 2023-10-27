@@ -4,8 +4,8 @@ import 'package:flutter_shake_animated/flutter_shake_animated.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 import 'package:tamahaem/controller/TimerController.dart';
-import 'package:tamahaem/controller/ui/FriendlyGage.dart';
 import 'package:tamahaem/controller/animation/MovementAnimation.dart';
+import 'package:tamahaem/controller/ui/FriendlyGage.dart';
 import 'package:tamahaem/controller/ui/StatusBar.dart';
 import 'package:tamahaem/controller/ui/menu/ActionDialog.dart';
 
@@ -14,7 +14,7 @@ import '../event/EventHandleProvider.dart';
 import '../utils/SoundPlayer.dart';
 
 class TamagotchiController extends StatefulWidget {
-  const TamagotchiController({Key? key}): super(key: key);
+  const TamagotchiController({Key? key}) : super(key: key);
 
   @override
   _TamagotchiControllerState createState() => _TamagotchiControllerState();
