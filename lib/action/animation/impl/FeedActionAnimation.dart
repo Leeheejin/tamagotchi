@@ -9,12 +9,12 @@ import 'package:logger/logger.dart';
 
 import '../AbstractActionAnimation.dart';
 
-class FeedActionUI extends AbstractActionAnimation {
+class FeedActionAnimation extends AbstractActionAnimation {
   final BuildContext context;
   final int currentStep;
   final VoidCallback onCompleted;
 
-  FeedActionUI(
+  FeedActionAnimation(
       {required this.context,
       required this.currentStep,
       required this.onCompleted});

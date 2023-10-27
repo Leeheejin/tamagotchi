@@ -63,7 +63,7 @@ class _FeedActionState extends State<FeedAction> {
                     width: MediaQuery.of(context).size.width,
                     height: MediaQuery.of(context).size.height,
                     child: GameWidget(
-                        game: FeedActionUI(
+                        game: FeedActionAnimation(
                             context: context,
                             currentStep: currentStep,
                             onCompleted: _onAnimationDone))))),
