@@ -18,7 +18,7 @@ class AnimationPageRoute extends PageRouteBuilder {
       animation: animation,
       transitionColor: transitionColor,
     ),
-    transitionDuration: const Duration(seconds: 3),
-    reverseTransitionDuration: const Duration(seconds: 3)
+    transitionDuration: const Duration(milliseconds: 2500),
+    reverseTransitionDuration: const Duration(milliseconds: 2500)
   );
 }
