@@ -42,9 +42,8 @@ class _TransitionEffectWidgetState extends State<TransitionEffectWidget> {
           ValueListenableBuilder(
               valueListenable: widget.animation,
               builder: (context, value, child) {
-                return CircleTransition(animation: widget.animation, transitionColor: widget.transitionColor);
                 if (useCircle) {
-
+                  return CircleTransition(animation: widget.animation, transitionColor: widget.transitionColor);
                 } else {
                   return BlindsTransition(
                       animation: widget.animation, isHorizontal: isHorizontal, transitionColor: widget.transitionColor);
