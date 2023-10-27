@@ -57,7 +57,7 @@ class FeedActionUI extends FlameGame {
   Logger logger = Logger();
 
   @override
-  Color backgroundColor() => const Color(0x00000000);
+  Color backgroundColor() => Colors.transparent;
 
   @override
   Future<void> onLoad() async {

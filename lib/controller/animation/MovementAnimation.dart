@@ -6,6 +6,7 @@ import 'package:flame/effects.dart';
 import 'package:flame/game.dart';
 import 'package:flame/sprite.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 
 class MovementAnimation extends FlameGame {
@@ -28,7 +29,7 @@ class MovementAnimation extends FlameGame {
   late double yMax;
 
   @override
-  Color backgroundColor() => const Color(0x00000000);
+  Color backgroundColor() => Colors.transparent;
 
   @override
   Future<void> onLoad() async {
