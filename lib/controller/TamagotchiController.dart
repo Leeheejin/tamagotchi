@@ -3,32 +3,32 @@ import 'package:flutter/material.dart';
 import 'package:flutter_shake_animated/flutter_shake_animated.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
-import 'package:tamahaem/controller/TamagotchiCounterController.dart';
+import 'package:tamahaem/controller/TimerController.dart';
 import 'package:tamahaem/controller/ui/FriendlyGage.dart';
-import 'package:tamahaem/controller/ui/TamagotchiMovement.dart';
-import 'package:tamahaem/controller/ui/TamagotchiStatus.dart';
+import 'package:tamahaem/controller/animation/MovementAnimation.dart';
+import 'package:tamahaem/controller/ui/StatusBar.dart';
 import 'package:tamahaem/controller/ui/menu/ActionDialog.dart';
 
 import '../domain/Tamagotchi.dart';
 import '../event/EventHandleProvider.dart';
 import '../utils/SoundPlayer.dart';
 
-class GameController extends StatefulWidget {
-  const GameController({super.key});
+class TamagotchiController extends StatefulWidget {
+  const TamagotchiController({super.key});
 
   @override
-  _GameControllerState createState() => _GameControllerState();
+  _TamagotchiControllerState createState() => _TamagotchiControllerState();
 }
 
-class _GameControllerState extends State<GameController>
-    with AutomaticKeepAliveClientMixin<GameController> {
+class _TamagotchiControllerState extends State<TamagotchiController>
+    with AutomaticKeepAliveClientMixin<TamagotchiController> {
   SoundPlayer soundPlayer = SoundPlayer();
-  late TamagotchiCounterController _tamagotchiCounterController;
+  late TimerController _tamagotchiCounterController;
   var logger = Logger();
 
   @override
   void initState() {
-    _tamagotchiCounterController = TamagotchiCounterController(() {
+    _tamagotchiCounterController = TimerController(() {
       setState(() {});
     });
 
@@ -62,7 +62,7 @@ class _GameControllerState extends State<GameController>
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height * 0.5,
                 child: GameWidget(
-                  game: TamagotchiMovement(),
+                  game: MovementAnimation(),
                 ),
               ))),
           Positioned(
@@ -113,7 +113,7 @@ class _GameControllerState extends State<GameController>
           Positioned(
               top: MediaQuery.of(context).size.height * 0.25,
               right: MediaQuery.of(context).size.width * 0.05,
-              child: TamagotchiStatus()),
+              child: StatusBar()),
           Positioned(
             bottom: MediaQuery.of(context).size.height * 0.1,
             left: MediaQuery.of(context).size.width * 0.1,

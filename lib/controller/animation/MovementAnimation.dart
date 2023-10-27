@@ -8,7 +8,7 @@ import 'package:flame/sprite.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:logger/logger.dart';
 
-class TamagotchiMovement extends FlameGame {
+class MovementAnimation extends FlameGame {
   Vector2 _currentPosition = Vector2(0, 0); //45, 450
   Vector2 _nextPosition = Vector2(0, 0); // 45, 450
   late Vector2 _spriteSize = Vector2(120, 120); // 48

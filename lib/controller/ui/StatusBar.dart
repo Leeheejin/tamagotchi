@@ -3,14 +3,14 @@ import 'package:provider/provider.dart';
 
 import '../../domain/Tamagotchi.dart';
 
-class TamagotchiStatus extends StatelessWidget {
+class StatusBar extends StatelessWidget {
   String getHungerImage(int hunger) {
     if (hunger >= 75) {
-      return "assets/images/status/hunger/75_heart.png";
+      return "assets/images/status/hunger/75_satiety.png";
     } else if (hunger >= 50) {
-      return "assets/images/status/hunger/50_heart.png";
+      return "assets/images/status/hunger/50_satiety.png";
     } else {
-      return "assets/images/status/hunger/25_heart.png";
+      return "assets/images/status/hunger/25_satiety.png";
     }
   }
 
@@ -29,11 +29,9 @@ class TamagotchiStatus extends StatelessWidget {
       return "assets/images/status/happiness/75_heart.png";
     } else if (happiness >= 50) {
       return "assets/images/status/happiness/50_heart.png";
-    } else if (happiness >= 25) {
+    } else {
       return "assets/images/status/happiness/25_heart.png";
     }
-
-    return "assets/images/status/zero.png";
   }
 
   @override
