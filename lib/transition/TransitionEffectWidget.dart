@@ -8,11 +8,13 @@ import 'impl/CircleTransition.dart';
 class TransitionEffectWidget extends StatefulWidget {
   final Widget child;
   final Animation<double> animation;
+  final Color transitionColor;
 
   const TransitionEffectWidget({
     required Key? key,
     required this.child,
     required this.animation,
+    required this.transitionColor
   }) : super(key: key);
 
   @override
@@ -41,10 +43,10 @@ class _TransitionEffectWidgetState extends State<TransitionEffectWidget> {
               valueListenable: widget.animation,
               builder: (context, value, child) {
                 if (useCircle) {
-                  return CircleTransition(animation: widget.animation);
+                  return CircleTransition(animation: widget.animation, transitionColor: widget.transitionColor);
                 } else {
                   return BlindsTransition(
-                      animation: widget.animation, isHorizontal: isHorizontal);
+                      animation: widget.animation, isHorizontal: isHorizontal, transitionColor: widget.transitionColor);
                 }
               })
         ],

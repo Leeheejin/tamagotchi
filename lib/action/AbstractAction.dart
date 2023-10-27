@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../domain/Tamagotchi.dart';
 
 abstract class AbstractAction extends StatefulWidget {
+  Color transitionColor = Colors.black;
   Tamagotchi tamagotchi = Tamagotchi();
 
   void action();

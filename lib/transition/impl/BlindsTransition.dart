@@ -3,8 +3,13 @@ import 'package:flutter/material.dart';
 class BlindsTransition extends StatelessWidget {
   final Animation<double> animation;
   final bool isHorizontal;
+  final Color transitionColor;
 
-  const BlindsTransition({required this.animation, required this.isHorizontal});
+  const BlindsTransition({
+    required this.animation,
+    required this.isHorizontal,
+    required this.transitionColor
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +47,7 @@ class BlindsTransition extends StatelessWidget {
               child: Container(
                 width: isHorizontal ? size : constraints.maxWidth,
                 height: isHorizontal ? constraints.maxHeight : size,
-                color: Colors.black,
+                color: transitionColor,
               ),
             );
           }),

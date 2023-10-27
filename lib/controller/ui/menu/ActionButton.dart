@@ -38,9 +38,14 @@ class _ActionButtonState extends State<ActionButton> {
           });
         },
         onTap: () {
+          AbstractAction action = ActionHandler().getActionAndActive(widget.index);
           Navigator.of(context).pop(true);
-          Navigator.of(context).push(AnimationPageRoute(
-              widget: ActionHandler().getAction(widget.index).doAction()));
+          Navigator.of(context).push(
+            AnimationPageRoute(
+              widget: action,
+              transitionColor: action.transitionColor
+            ),
+          );
         },
         child: Stack(
           children: [

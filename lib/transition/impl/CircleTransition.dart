@@ -2,8 +2,13 @@ import 'package:flutter/material.dart';
 
 class CircleTransition extends StatelessWidget {
   final Animation<double> animation;
+  final Color transitionColor;
 
-  const CircleTransition({required this.animation});
+  const CircleTransition(
+      {
+        required this.animation,
+        required this.transitionColor
+      });
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +24,7 @@ class CircleTransition extends StatelessWidget {
       child: ClipOval(
         clipper: CircleClipper(radius),
         child: Container(
-          color: Colors.black,
+          color: transitionColor,
         ),
       ),
     );
