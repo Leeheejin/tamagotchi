@@ -152,7 +152,7 @@ class _TamagotchiControllerState extends State<TamagotchiController>
           origin: Offset(MediaQuery.of(context).size.width * 0.1,
               MediaQuery.of(context).size.height),
           scale: curve,
-          child: ActionDialog(),
+          child: const ActionDialog(),
         );
       },
       transitionDuration: const Duration(seconds: 1),

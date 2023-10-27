@@ -7,7 +7,9 @@ import 'package:flame/sprite.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:logger/logger.dart';
 
-class PlayActionUI extends FlameGame {
+import '../AbstractActionAnimation.dart';
+
+class CleanActionUI extends AbstractActionAnimation {
   Vector2 _currentPosition = Vector2(-50, 150);
   Vector2 _nextPosition = Vector2(35, 150);
   final spriteSize = Vector2(120.0, 120.0); //48

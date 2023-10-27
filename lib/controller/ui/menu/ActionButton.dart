@@ -4,6 +4,8 @@ import 'package:tamahaem/action/ActionHandler.dart';
 import 'package:tamahaem/controller/TamagotchiController.dart';
 import 'package:tamahaem/transition/AnimationPageRoute.dart';
 
+import 'ActionDialog.dart';
+
 class ActionButton extends StatefulWidget {
   int index = 0;
 
@@ -40,10 +42,10 @@ class _ActionButtonState extends State<ActionButton> {
         },
         onTap: () {
           AbstractAction action = ActionHandler().getAction(widget.index);
-          Navigator.of(context).pop(true);
+          Navigator.of(context).pop();
           Navigator.of(context).push(
             AnimationPageRoute(
-              currentScreen: const TamagotchiController(),
+              currentScreen: const ActionDialog(),
               nextScreen: action,
               transitionColor: action.transitionColor
             ),

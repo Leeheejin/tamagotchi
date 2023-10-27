@@ -2,7 +2,7 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:tamahaem/action/AbstractAction.dart';
-import 'package:tamahaem/action/animation/FeedActionAnimation.dart';
+import 'package:tamahaem/action/animation/impl/FeedActionAnimation.dart';
 import 'package:tamahaem/controller/ui/chat/ChatBox.dart';
 
 class FeedAction extends AbstractAction {

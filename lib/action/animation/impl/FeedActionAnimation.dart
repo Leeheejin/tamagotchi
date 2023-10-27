@@ -8,7 +8,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 
-class FeedActionUI extends FlameGame {
+import '../AbstractActionAnimation.dart';
+
+class FeedActionUI extends AbstractActionAnimation {
   final BuildContext context;
   final int currentStep;
   final VoidCallback onCompleted;
@@ -57,9 +59,6 @@ class FeedActionUI extends FlameGame {
   Logger logger = Logger();
 
   @override
-  Color backgroundColor() => Colors.transparent;
-
-  @override
   Future<void> onLoad() async {
     await initSheet();
     initPosition();
@@ -77,7 +76,7 @@ class FeedActionUI extends FlameGame {
         eat();
         break;
       case 3:
-        close();
+        super.dispose();
         break;
       default:
         // Code for the default animation if no specific step is provided...
@@ -244,9 +243,5 @@ class FeedActionUI extends FlameGame {
 
     // adding effect to animation component
     add(characterEatingDoneAnimationComponent..add(characterEatingDoneEffect));
-  }
-
-  void close() {
-    Navigator.of(context).pop();
   }
 }
