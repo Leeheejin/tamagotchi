@@ -33,7 +33,6 @@ class MovementAnimation extends FlameGame {
 
   @override
   Future<void> onLoad() async {
-    print("${size.x} ${size.y}");
 
     _currentPosition = Vector2(0, 0);
     _nextPosition = _currentPosition;
