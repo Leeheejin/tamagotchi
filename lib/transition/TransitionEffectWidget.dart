@@ -11,11 +11,10 @@ class TransitionEffectWidget extends StatefulWidget {
   final Color transitionColor;
 
   const TransitionEffectWidget({
-    required Key? key,
     required this.child,
     required this.animation,
     required this.transitionColor
-  }) : super(key: key);
+  });
 
   @override
   _TransitionEffectWidgetState createState() => _TransitionEffectWidgetState();

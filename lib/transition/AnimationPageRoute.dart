@@ -11,7 +11,6 @@ class AnimationPageRoute extends PageRouteBuilder {
           pageBuilder: (context, animation, secondaryAnimation) => widget,
           transitionsBuilder: (context, animation, secondaryAnimation, child) =>
               TransitionEffectWidget(
-                  key: const ValueKey('someUniqueValue'),
                   animation: animation,
                   transitionColor: transitionColor,
                   child: child,
