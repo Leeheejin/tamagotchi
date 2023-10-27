@@ -16,7 +16,7 @@ class FeedAction extends AbstractAction {
 
   @override
   // TODO: implement actionColor
-  Color get transitionColor => Colors.pinkAccent.shade100;
+  Color get transitionColor => Color.fromRGBO(255, 197, 191, 1);
 }
 
 class _FeedActionState extends State<FeedAction> {
