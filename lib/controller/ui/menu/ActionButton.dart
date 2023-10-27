@@ -43,7 +43,7 @@ class _ActionButtonState extends State<ActionButton> {
           Navigator.of(context).pop(true);
           Navigator.of(context).push(
             AnimationPageRoute(
-              currentScreen: widget,
+              currentScreen: const TamagotchiController(),
               nextScreen: action,
               transitionColor: action.transitionColor
             ),

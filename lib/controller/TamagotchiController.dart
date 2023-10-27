@@ -14,7 +14,7 @@ import '../event/EventHandleProvider.dart';
 import '../utils/SoundPlayer.dart';
 
 class TamagotchiController extends StatefulWidget {
-  const TamagotchiController({super.key});
+  const TamagotchiController({Key? key}): super(key: key);
 
   @override
   _TamagotchiControllerState createState() => _TamagotchiControllerState();
