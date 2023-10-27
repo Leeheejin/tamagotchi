@@ -23,10 +23,8 @@ class ActionHandler {
         EventHandlerProvider().currentEvent.handleEvent(type)
       };
 
-  AbstractAction getActionAndActive(int index) {
+  AbstractAction getAction(int index) {
     actionNotifier(_actionButtonMap[index].runtimeType);
-
-    _actionButtonMap[index]!.doAction();
 
     return _actionButtonMap[index]!;
   }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tamahaem/action/AbstractAction.dart';
 import 'package:tamahaem/action/ActionHandler.dart';
+import 'package:tamahaem/controller/TamagotchiController.dart';
 import 'package:tamahaem/transition/AnimationPageRoute.dart';
 
 class ActionButton extends StatefulWidget {
@@ -38,14 +39,17 @@ class _ActionButtonState extends State<ActionButton> {
           });
         },
         onTap: () {
-          AbstractAction action = ActionHandler().getActionAndActive(widget.index);
+          AbstractAction action = ActionHandler().getAction(widget.index);
           Navigator.of(context).pop(true);
           Navigator.of(context).push(
             AnimationPageRoute(
-              widget: action,
+              currentScreen: widget,
+              nextScreen: action,
               transitionColor: action.transitionColor
             ),
           );
+
+          action.doAction();
         },
         child: Stack(
           children: [

@@ -5,52 +5,54 @@ import 'package:flutter/cupertino.dart';
 import 'impl/BlindsTransition.dart';
 import 'impl/CircleTransition.dart';
 
-class TransitionEffectWidget extends StatefulWidget {
-  final Widget child;
+class TransitionEffectWidget extends StatelessWidget {
+  final Widget currentScreen;
+  final Widget nextScreen;
   final Animation<double> animation;
   final Color transitionColor;
 
   const TransitionEffectWidget({
-    required this.child,
+    required this.currentScreen,
+    required this.nextScreen,
     required this.animation,
-    required this.transitionColor
-  });
-
-  @override
-  _TransitionEffectWidgetState createState() => _TransitionEffectWidgetState();
-}
-
-class _TransitionEffectWidgetState extends State<TransitionEffectWidget> {
-  late final bool useCircle;
-  late final bool isHorizontal;
-
-  @override
-  void initState() {
-    super.initState();
-    useCircle = Random().nextBool();
-    isHorizontal = Random().nextBool();
-  }
+    required this.transitionColor,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return AbsorbPointer(
-      absorbing: widget.animation.status == AnimationStatus.forward,
-      child: Stack(
-        children: [
-          widget.child,
-          ValueListenableBuilder(
-              valueListenable: widget.animation,
-              builder: (context, value, child) {
-                return CircleTransition(animation: widget.animation, transitionColor: widget.transitionColor);
-                if (useCircle) {
-
-                } else {
-                  return BlindsTransition(
-                      animation: widget.animation, isHorizontal: isHorizontal, transitionColor: widget.transitionColor);
-                }
-              })
-        ],
-      ),
+    return ValueListenableBuilder(
+      valueListenable: animation,
+      builder: (context, value, child) {
+        if (animation.value <= 0.5) {
+          return Stack(
+            children: [
+              currentScreen,
+              CircleTransition(
+                animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
+                  parent: animation,
+                  curve: Interval(0.0, 0.5, curve: Curves.easeOut),
+                )),
+                transitionColor: transitionColor,
+              ),
+            ],
+          );
+        } else {
+          return Stack(
+            children: [
+              nextScreen,
+              animation.value < 1.0 ? CircleTransition(
+                animation: Tween<double>(begin: 1.0, end: 0.0).animate(CurvedAnimation(
+                  parent: animation,
+                  curve: Interval(0.5, 1.0, curve: Curves.easeIn),
+                )),
+                transitionColor: transitionColor,
+              ) : const Column(),
+            ],
+          );
+        }
+      },
     );
   }
 }
+

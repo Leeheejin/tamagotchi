@@ -1,49 +1,48 @@
+import 'dart:math';
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 class CircleTransition extends StatelessWidget {
   final Animation<double> animation;
   final Color transitionColor;
 
-  const CircleTransition(
-      {
-        required this.animation,
-        required this.transitionColor
-      });
+  const CircleTransition({required this.animation, required this.transitionColor});
 
   @override
   Widget build(BuildContext context) {
-    final curvedAnimation = CurvedAnimation(
-      parent: animation,
-      curve: Curves.easeOutCubic,
-    );
-
-    final size = MediaQuery.of(context).size;
-    final radius = (1.0 - curvedAnimation.value) * size.width;
-
-    return Center(
-      child: ClipOval(
-        clipper: CircleClipper(radius),
-        child: Container(
-          color: transitionColor,
-        ),
-      ),
+    return CustomPaint(
+      painter: CirclePainter(animation: animation, color: transitionColor),
+      child: Container(),
     );
   }
 }
 
-class CircleClipper extends CustomClipper<Rect> {
-  final double radius;
+class CirclePainter extends CustomPainter {
+  final Animation<double> animation;
+  final Color color;
 
-  CircleClipper(this.radius);
+  CirclePainter({required this.animation, required this.color});
 
   @override
-  Rect getClip(Size size) {
-    return Rect.fromCircle(
-        center: Offset(size.width / 2, size.height / 2), radius: radius);
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()..color = color;
+    final center = Offset(size.width / 2, size.height / 2);
+
+    // Calculate the diagonal to ensure the circle always covers the entire screen
+    final diagonal = sqrt(size.width * size.width + size.height * size.height);
+    final radius = (1.0 - animation.value) * diagonal / 2;
+
+    final path = Path()
+      ..addOval(Rect.fromCircle(center: center, radius: radius))
+      ..addRect(Rect.fromLTWH(0, 0, size.width, size.height))
+      ..fillType = PathFillType.evenOdd;
+
+    canvas.drawPath(path, paint);
   }
 
   @override
-  bool shouldReclip(CircleClipper oldClipper) {
-    return radius != oldClipper.radius;
+  bool shouldRepaint(covariant CustomPainter oldDelegate) {
+    return true;
   }
 }
