@@ -12,13 +12,13 @@ class AnimationPageRoute extends PageRouteBuilder {
     required this.nextScreen,
     required this.transitionColor,
   }) : super(
-    pageBuilder: (context, animation, secondaryAnimation) => TransitionEffectWidget(
-      currentScreen: currentScreen,
-      nextScreen: nextScreen,
-      animation: animation,
-      transitionColor: transitionColor,
-    ),
-    transitionDuration: const Duration(milliseconds: 2500),
-    reverseTransitionDuration: const Duration(milliseconds: 2500)
-  );
+            pageBuilder: (context, animation, secondaryAnimation) =>
+                TransitionEffectWidget(
+                  currentScreen: currentScreen,
+                  nextScreen: nextScreen,
+                  animation: animation,
+                  transitionColor: transitionColor,
+                ),
+            transitionDuration: const Duration(milliseconds: 2500),
+            reverseTransitionDuration: const Duration(milliseconds: 2500));
 }

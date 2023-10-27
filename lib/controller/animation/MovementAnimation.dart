@@ -5,7 +5,6 @@ import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
 import 'package:flame/game.dart';
 import 'package:flame/sprite.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 
@@ -33,7 +32,6 @@ class MovementAnimation extends FlameGame {
 
   @override
   Future<void> onLoad() async {
-
     _currentPosition = Vector2(0, 0);
     _nextPosition = _currentPosition;
 
